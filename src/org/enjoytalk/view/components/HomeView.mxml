@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:local="org.enjoytalk.view.components.custom.*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" show="setContent()">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.CalendarLayoutChangeEvent;
+			import mx.events.DateChooserEvent;
+			import mx.events.ResizeEvent;
+			import mx.formatters.DateFormatter;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+
+			import org.enjoytalk.ApplicationFacade;
+			import org.enjoytalk.model.CourseProxy;
+			import org.enjoytalk.model.UserProxy;
+			import org.enjoytalk.model.vo.*;
+			import org.enjoytalk.view.components.homeView.calendar.DateRange;
+			import org.enjoytalk.view.events.DEvent;
+			import org.enjoytalk.view.events.ToolsEvent;
+
+			public static const INIT_COMPLETE:String="initComplete";
+
+			private var facade:ApplicationFacade=ApplicationFacade.getInstance();
+
+			private var courseProxy:CourseProxy;
+			private var userProxy:UserProxy;
+
+			private function setContent():void
+			{
+				this.dispatchEvent(new Event(INIT_COMPLETE));
+			}
+
+			public function loadHistoryData():void
+			{
+				var newDate:Date=new Date();
+				var calDate:Date=new Date(hisCalendar.displayedYear, hisCalendar.displayedMonth);
+				if (calDate.fullYear <= newDate.fullYear && calDate.getMonth() <= newDate.getMonth())
+				{
+					var requestDate:String=calDate.fullYear + "-" + (calDate.getMonth() + 1);
+					if (HistoryData.checkLoadedData(requestDate))
+					{
+
+					}
+					courseProxy=CourseProxy(facade.retrieveProxy(CourseProxy.NAME));
+					courseProxy.loadUserHistory(requestDate, historyDownHandler, historyProgressHandler, historyFailHandler);
+				}
+				else
+				{
+					return;
+				}
+			}
+
+			private function setCalendarData(data:Array):void
+			{
+				hisCalendar.extraData=data;
+			}
+
+			private function historyDownHandler(data:*):void
+			{
+				setCalendarData(data);
+			}
+
+			private function historyProgressHandler(event:*):void
+			{
+
+			}
+
+			private function historyFailHandler(event:*):void
+			{
+			}
+
+			private function loadStudyData():void
+			{
+				courseProxy=CourseProxy(facade.retrieveProxy(CourseProxy.NAME));
+				courseProxy.loadStudyData(dataDoneHandler, dataProgressHandler, dataFailHandler);
+				facade.sendNotification(ApplicationFacade.APP_BUSY_STATE);
+			}
+
+			private function dataDoneHandler():void
+			{
+				try
+				{
+					facade.sendNotification(ApplicationFacade.APP_BUSY_IDLE);
+					if (courseProxy.itemsData != null && courseProxy.itemsData.length > 0)
+					{
+						facade.sendNotification(ApplicationFacade.PREVIEW_SHOW);
+					}
+					else
+					{
+						hintMessage.text=courseProxy.course.session.scheduleMessage;
+					}
+				}
+				catch (e:Error)
+				{
+					hintMessage.text=e.message;
+				}
+			}
+
+			private function dataProgressHandler():void
+			{
+			}
+
+			private function dataFailHandler():void
+			{
+				facade.sendNotification(ApplicationFacade.APP_BUSY_IDLE);
+			}
+		]]>
+	</fx:Script>
+	<!-- 左侧部分 -->
+	<s:HGroup width="100%" height="100%">
+		<s:BorderContainer width="289" height="540" styleName="homeMainPanel">
+			<s:VGroup width="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" gap="10">
+				<s:BorderContainer backgroundAlpha="0" borderVisible="false" width="100%" height="30">
+					<s:Label id="welcomeMessage" fontWeight="bold" fontSize="13" paddingBottom="15"/>
+				</s:BorderContainer>
+				<s:Label text="课程:" fontSize="13"/>
+				<s:RichText color="#FED841" fontSize="15" fontWeight="bold" maxWidth="240" id="courseTitle" styleName="courseTitle"/>
+			</s:VGroup>
+			<s:HGroup width="100%" height="75" paddingBottom="10" paddingLeft="12" paddingRight="12" paddingTop="6" horizontalAlign="center">
+				<s:BorderContainer styleName="miscPanel" width="230" height="75">
+					<s:Group width="100%" height="100%">
+						<s:VGroup width="50%" height="100%" left="0" top="0" verticalAlign="middle">
+							<s:Label width="100%" color="#0075A9" fontSize="30" textAlign="center" text="100" fontFamily="Arial" id="bigCompleteCount"/>
+							<s:Label color="#0075A9" fontSize="14" fontWeight="bold" text="完成单词" width="115" textAlign="center" fontFamily="Arial"/>
+						</s:VGroup>
+						<s:VGroup width="50%" height="100%" left="115" top="0" verticalAlign="middle">
+							<s:Label width="115" color="#0075A9" fontSize="30" textAlign="center" text="11:10" maxWidth="115" fontFamily="Arial" id="bigStudyTime"/>
+							<s:Label color="#0075A9" fontSize="14" fontWeight="bold" text="学习时间" width="115" textAlign="center" fontFamily="Arial"/>
+						</s:VGroup>
+					</s:Group>
+				</s:BorderContainer>
+			</s:HGroup>
+			<s:HGroup width="100%" gap="8" fontSize="14" paddingBottom="6" paddingLeft="12" paddingRight="15" paddingTop="20">
+				<s:Label fontWeight="bold" text="开始学习时间:"/>
+				<s:Label fontWeight="bold" id="startTime"/>
+			</s:HGroup>
+			<s:BorderContainer height="1" width="100%" styleName="shortLine"/>
+			<s:VGroup width="100%" height="70" horizontalAlign="center" gap="10" paddingTop="15" paddingBottom="10" paddingLeft="10" paddingRight="10">
+				<s:Label width="100%" fontSize="14" fontWeight="bold" text="课程进度" id="progressLabel"/>
+				<mx:ProgressBar id="courseProgress" styleName="courseProgressBar" width="200" fontWeight="bold" horizontalCenter="1" label="" labelPlacement="right" horizontalGap="0" maximum="100" minimum="0" mode="manual"/>
+			</s:VGroup>
+			<s:VGroup width="100%" height="20%" horizontalAlign="center" paddingTop="15" paddingBottom="15" paddingLeft="10" paddingRight="10">
+				<s:Label width="100%" fontWeight="bold" text="单词学习进度" fontSize="14"/>
+				<s:VGroup width="85%" horizontalAlign="center" paddingTop="6" gap="8" fontSize="13">
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="进度"/>
+						<s:Label text="单词"/>
+					</s:HGroup>
+					<s:BorderContainer height="1" width="100%" styleName="shortLine"/>
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="新单词"/>
+						<s:Label id="newItemsCount"/>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="0 - 50%"/>
+						<s:Label id="weakItemsCount"/>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="50% - 100%"/>
+						<s:Label id="strongItemsCount"/>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="已学完"/>
+						<s:Label id="completeItemsCount"/>
+					</s:HGroup>
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="已忽略"/>
+						<s:Label id="skippedItemsCount"/>
+					</s:HGroup>
+					<s:BorderContainer height="1" width="100%" styleName="shortLine"/>
+					<s:HGroup width="100%">
+						<s:Label width="80%" text="总计"/>
+						<s:Label id="totalItemsCount"/>
+					</s:HGroup>
+				</s:VGroup>
+			</s:VGroup>
+		</s:BorderContainer>
+		<s:VGroup width="100%" height="100%">
+			<s:BorderContainer width="100%" height="402" styleName="homeMainPanel">
+				<s:Label fontWeight="bold" text="学习目标" paddingTop="15" paddingLeft="10" paddingRight="10" paddingBottom="6" fontSize="14"/>
+				<s:VGroup width="100%" paddingTop="6" paddingLeft="30" paddingRight="30" paddingBottom="6">
+					<s:RichText id="hintMessage" text="欢迎使用Skillup学习工具，Skillup是个有效率的学习工具，它可以帮助你学习新内容同时复习已经学过的内容。下面日历记录了你每天学完的单词数。" width="520"/>
+				</s:VGroup>
+				<s:Group width="100%" height="100%">
+					<s:HGroup width="530" height="290" left="40" top="0" bottom="10" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10">
+						<s:VGroup width="480" height="290" horizontalAlign="center" paddingBottom="10" paddingLeft="6" paddingRight="6" paddingTop="10">
+							<local:StudyCalendar width="500" height="280" id="hisCalendar" scroll="loadHistoryData()" fontWeight="bold" styleName="historyCal" paddingRight="15" paddingLeft="20" color="#000000" borderAlpha="0" borderVisible="false" cornerRadius="8" headerStyleName="hisCalHeader" weekDayStyleName="hisCalWeek" contentBackgroundColor="#009CD7" allowMultipleSelection="false" headerColors="#0375CB" allowDisjointSelection="false"/>
+						</s:VGroup>
+					</s:HGroup>
+				</s:Group>
+			</s:BorderContainer>
+			<s:BorderContainer width="100%" height="131" styleName="homeMainPanel">
+				<s:VGroup width="100%" height="100%" paddingTop="8" paddingBottom="8" paddingLeft="10" paddingRight="10" gap="6">
+					<s:Label width="100%" fontSize="14" fontWeight="bold" text="开始学习"/>
+					<s:HGroup width="100%" height="100%" gap="8" verticalAlign="middle">
+						<local:ImagePreviewer width="120" height="90" backgroundColor="#CFC8CC" id="courseImage" borderWeight="2"/>
+						<s:Group width="100%" height="100%">
+							<s:Label x="0" y="10" fontSize="14" text="点击右侧“开始”按钮开始新的学习."/>
+							<s:Label x="0" y="50" fontSize="14" text="# 选择学习的单词"/>
+							<s:HGroup id="sessionCountGroup" width="180" bottom="6" maxWidth="180">
+								<s:RadioButton id="countFive" color="#FFFFFF" width="50" styleName="commonRadioButton" fontSize="12" fontWeight="bold" label="5个" selected="true" value="5" groupName="itemsNum" buttonMode="true" useHandCursor="true"/>
+								<s:RadioButton styleName="commonRadioButton" width="50" id="countTen" color="#FFFFFF" fontSize="12" fontWeight="bold" label="10个" value="10" groupName="itemsNum" buttonMode="true" useHandCursor="true"/>
+							</s:HGroup>
+							<s:Button id="startBtn" right="6" bottom="6" label="" styleName="homeStartButton" buttonMode="true" useHandCursor="true" click="loadStudyData()"/>
+						</s:Group>
+					</s:HGroup>
+				</s:VGroup>
+			</s:BorderContainer>
+		</s:VGroup>
+	</s:HGroup>
+</s:NavigatorContent>

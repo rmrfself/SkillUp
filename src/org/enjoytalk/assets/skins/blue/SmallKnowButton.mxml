@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="28" id="rect0" includeIn="up" radiusX="2" radiusY="2" width="118" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Ellipse height="20" id="ellipse1" includeIn="up" width="20" x="8" y="4">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+	</s:Ellipse>
+	<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext1" includeIn="up" tabStops="S0 S50" text="知 道" x="50" y="7">
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:RichText>
+	<s:Rect height="28" id="rect1" includeIn="over" radiusX="2" radiusY="2" width="118" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Ellipse height="20" id="ellipse0" includeIn="over" width="20" x="8" y="4">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+	</s:Ellipse>
+	<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext0" includeIn="over" tabStops="S0 S50" text="知 道" x="50" y="7">
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:RichText>
+	<s:Rect height="28" id="rect2" includeIn="down" radiusX="2" radiusY="2" width="118" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Rect>
+	<s:Ellipse height="20" id="ellipse2" includeIn="down" width="20" x="8" y="4">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+	</s:Ellipse>
+	<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext2" includeIn="down" tabStops="S0 S50" text="知 道" x="50" y="7">
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:RichText>
+	<s:Rect height="28" id="rect3" includeIn="disabled" radiusX="2" radiusY="2" width="118" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor color="#CCCCCC"/>
+		</s:fill>
+	</s:Rect>
+	<s:Ellipse height="20" id="ellipse3" includeIn="disabled" width="20" x="8" y="4">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+	</s:Ellipse>
+	<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext3" includeIn="disabled" tabStops="S0 S50" text="知 道" x="50" y="7">
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:RichText>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="disabled" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

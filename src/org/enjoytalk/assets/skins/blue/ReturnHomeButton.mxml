@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008" xmlns:lib="assets.graphics.*" xmlns:fc="http://ns.adobe.com/flashcatalyst/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="28" id="rect0" includeIn="up" radiusX="2" radiusY="2" width="86" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<fx:DesignLayer d:id="2" d:userLabel="隔离模式">
+		<s:Path data="M 0 10.033 L 17.377 0 L 17.377 5.156 C 17.377 5.156 21.208 5.156 24.906 5.156 C 28.606 5.156 32.791 0.301 32.791 0.301 C 32.791 0.301 31.65 11.719 27.465 13.621 C 23.277 15.523 17.377 14.914 17.377 14.914 L 17.377 20.068 L 0 10.033 Z" height="15" id="path1" includeIn="up" width="20" winding="nonZero" x="4.535" y="9.396">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext1" includeIn="up" tabStops="S0 S50" text="返 回" x="34" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Rect height="28" id="rect1" includeIn="over" radiusX="2" radiusY="2" width="86" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+					<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Path data="M 0 10.033 L 17.377 0 L 17.377 5.156 C 17.377 5.156 21.208 5.156 24.906 5.156 C 28.606 5.156 32.791 0.301 32.791 0.301 C 32.791 0.301 31.65 11.719 27.465 13.621 C 23.277 15.523 17.377 14.914 17.377 14.914 L 17.377 20.068 L 0 10.033 Z" height="15" id="path0" includeIn="over" width="20" winding="nonZero" x="4.535" y="9.396">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext0" includeIn="over" tabStops="S0 S50" text="返 回" x="34" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Rect height="28" id="rect2" includeIn="down" radiusX="2" radiusY="2" width="86" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+					<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Rect>
+		<s:Path data="M 0 10.033 L 17.377 0 L 17.377 5.156 C 17.377 5.156 21.208 5.156 24.906 5.156 C 28.606 5.156 32.791 0.301 32.791 0.301 C 32.791 0.301 31.65 11.719 27.465 13.621 C 23.277 15.523 17.377 14.914 17.377 14.914 L 17.377 20.068 L 0 10.033 Z" height="15" id="path2" includeIn="down" width="20" winding="nonZero" x="4.535" y="9.396">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext2" includeIn="down" tabStops="S0 S50" text="返 回" x="34" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Rect height="28" id="rect3" includeIn="disabled" radiusX="2" radiusY="2" width="86" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#CCCCCC"/>
+			</s:fill>
+		</s:Rect>
+		<s:Path data="M 0 10.033 L 17.377 0 L 17.377 5.156 C 17.377 5.156 21.208 5.156 24.906 5.156 C 28.606 5.156 32.791 0.301 32.791 0.301 C 32.791 0.301 31.65 11.719 27.465 13.621 C 23.277 15.523 17.377 14.914 17.377 14.914 L 17.377 20.068 L 0 10.033 Z" height="15" id="path3" includeIn="disabled" width="20" winding="nonZero" x="4.535" y="9.396">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext3" includeIn="disabled" tabStops="S0 S50" text="返 回" x="34" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+	</fx:DesignLayer>
+	<s:transitions>
+		<s:Transition fromState="over" toState="up" autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{rect0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

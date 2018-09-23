@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" hide="hiddenHandler()">
+	<fx:Declarations>
+		<s:Sequence id="goalsShowEffects">
+			<s:Fade id="goalsFadeIn" alphaFrom="0.0" alphaTo="1.0" duration="800" target="{goalsContainer}" effectStart="playSound()"/>
+			<s:Fade id="goalsFadeOut" alphaFrom="1.0" alphaTo="1.0" duration="2000" target="{goalsContainer}"/>
+			<s:Fade alphaFrom="1.0" alphaTo="0" duration="500" target="{goalsContainer}"/>
+			<s:Fade alphaFrom="0.0" alphaTo="1.0" duration="800" target="{responsesContainer}"/>
+			<s:Fade alphaFrom="1.0" alphaTo="1.0" duration="2000" target="{responsesContainer}"/>
+			<s:Fade alphaFrom="1.0" alphaTo="0" duration="500" target="{responsesContainer}"/>
+			<s:Fade alphaFrom="0.0" alphaTo="0" duration="700" target="{responsesContainer}"/>
+			<s:Fade alphaFrom="0.0" alphaTo="1.0" duration="400" targets="{[goalsContainer,responsesContainer]}" effectEnd="playSound()"/>
+		</s:Sequence>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import org.enjoytalk.ApplicationFacade;
+			import org.enjoytalk.model.vo.AbstractElement;
+			import org.enjoytalk.model.vo.CueData;
+			import org.enjoytalk.model.vo.DataContent;
+			import org.enjoytalk.model.vo.Item;
+			import org.enjoytalk.model.vo.ItemSession;
+			import org.enjoytalk.model.vo.StudyParameter;
+			import org.enjoytalk.view.components.custom.LanguageCodeManager;
+			import org.enjoytalk.view.components.custom.SoundManager;
+
+			private var _itemData:Item;
+			private var _stduyParameter:StudyParameter;
+			public var _reverseMode:Boolean = false;
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+			private var _cueExtra:String = DataContent.CHARACTER;
+
+			private function hiddenHandler():void
+			{
+				goalsShowEffects.stop();
+				goalsFadeIn.stop();
+				goalsFadeOut.stop();
+			}
+
+			private function playSound():void
+			{
+			}
+
+			public function setParameter(param:StudyParameter):void
+			{
+				_stduyParameter = param;
+			}
+
+			public function setContent(item:Item):void
+			{
+				hiddenHandler();
+				responsesContainer.alpha = 0;
+				responsesContainer.visible = true;
+				goalsContainer.alpha = 0;
+				goalsContainer.visible = true;
+				if (_stduyParameter.cueExtra == null)
+				{
+					_stduyParameter.cueExtra = _cueExtra;
+				}
+				_itemData = item;
+				setCueData(item);
+				setExtraData(item);
+				setResonseData(item);
+				if (this._reverseMode)
+				{
+					this.pos.visible = false;
+				}
+				speakItem();
+			}
+
+			private function getDisplayCueText(itemData:Item, type:String):String
+			{
+				var cueText:String;
+				switch (type)
+				{
+					case DataContent.CUE:
+						cueText = itemData.cue.text;
+						break;
+					case DataContent.ROMANIZED:
+						cueText = itemData.cue.romanized;
+						break;
+					case DataContent.KANA:
+					case DataContent.TRANSLITERATION_SIMPLIFIED:
+					case DataContent.TRANSLITERATION_EXTRA:
+						if (itemData.cueExtra.type == type)
+						{
+							cueText = itemData.cueExtra.value;
+						}
+						break;
+				}
+				return cueText == null ? itemData.cue.text : cueText;
+			}
+
+			private function getDisplayResponseText(itemData:Item):String
+			{
+				var responseText:String;
+				if (!this._reverseMode)
+				{
+					return responseText;
+				}
+				var type:String = this._stduyParameter.cue;
+				if (type != null)
+				{
+					switch (type)
+					{
+						case DataContent.TRANSLITERATION_ROMANIZED:
+							responseText = itemData.cue.romanized;
+							break;
+						case DataContent.TRANSLITERATION_SIMPLIFIED:
+							responseText = (itemData.response.type == type ? itemData.response.text : null);
+							break;
+					}
+				}
+				return (responseText == null ? itemData.response.text : responseText);
+			}
+
+			private function getDisplayExtraText(itemData:Item):String
+			{
+				var extraData:String;
+				if (this._reverseMode)
+				{
+					return extraData;
+				}
+				if (extraText != null)
+				{
+					var dataContent:AbstractElement;
+					switch (_cueExtra)
+					{
+						case DataContent.CUE:
+							dataContent = (this._reverseMode ? itemData.response : itemData.cue);
+							extraData = dataContent.text;
+							break;
+						case DataContent.CHARACTER:
+						case DataContent.TRANSLITERATION_EXTRA:
+							extraData = itemData.cue.character;
+							break;
+						case DataContent.TRANSLITERATION_SIMPLIFIED:
+							dataContent = (this._reverseMode ? itemData.response : itemData.cue);
+							extraData = dataContent.extraData.value;
+							break;
+						case DataContent.ROMANIZED:
+							dataContent = (this._reverseMode ? itemData.response : itemData.cue) as AbstractElement;
+							extraData = dataContent.romanized;
+					}
+				}
+				return extraData;
+			}
+
+			private function setCueData(itemData:Item):void
+			{
+				if (!_reverseMode)
+				{
+					if (itemData.cue.type == DataContent.ROMANIZED && itemData.cue.romanized != null)
+					{
+						goalText.text = itemData.cue.romanized;
+					}
+					else
+					{
+						goalText.text = this.getDisplayCueText(itemData, itemData.type);
+					}
+					goalText.setStyle("styleName", "goalText_" + LanguageCodeManager.getInstance().cueLanguageCode);
+					if (itemData.cue.partOfSpeech != null && itemData.cue.partOfSpeech != "null" && itemData.cue.partOfSpeech != "--")
+					{
+						pos.visible = true;
+						pos.label = itemData.cue.partOfSpeech;
+					}
+					else
+					{
+						pos.visible = false;
+					}
+				}
+				else
+				{
+					goalText.text = itemData.cue.text;
+					goalText.setStyle("styleName", "goalText_" + LanguageCodeManager.getInstance().responseLanguageCode);
+				}
+			}
+
+			private function setResonseData(itemData:Item):void
+			{
+				if (this._reverseMode)
+				{
+					var responseData:String = getDisplayResponseText(itemData);
+					if (responseData == null)
+					{
+						responseData = itemData.response.text;
+					}
+					responseText.text = responseData;
+					responseText.setStyle("styleName", "responseText_" + LanguageCodeManager.getInstance().cueLanguageCode);
+				}
+				else
+				{
+					responseText.text = itemData.response.text;
+					responseText.setStyle("styleName", "responseText_" + LanguageCodeManager.getInstance().responseLanguageCode);
+				}
+			}
+
+			private function setExtraData(item:Item):void
+			{
+				if (_reverseMode)
+				{
+					this.extraText.visible = false;
+					return;
+				}
+				var extraData:String = this.getDisplayExtraText(item);
+				if (extraData != null && extraData != item.cue.text)
+				{
+					extraText.text = extraData;
+					extraText.visible = true;
+					extraText.includeInLayout = true;
+					extraText.setStyle("styleName", "goalText_" + LanguageCodeManager.getInstance().cueLanguageCode);
+				}
+				else
+				{
+					extraText.visible = false;
+					extraText.includeInLayout = false;
+				}
+			}
+
+			public function showContent(item:Item, param:StudyParameter):void
+			{
+				this._stduyParameter = param;
+				_reverseMode = param.isReversedMode;
+				this.setContent(item);
+				if (goalsShowEffects.isPlaying)
+				{
+					goalsShowEffects.stop();
+				}
+				goalsShowEffects.play();
+			}
+
+			private function reSpeak():void
+			{
+				speakItem();
+			}
+
+			private function speakItem():void
+			{
+				var soundUrl:String;
+				if (_reverseMode)
+				{
+					soundUrl = _itemData.response.sound;
+				}
+				else
+				{
+					soundUrl = _itemData.cue.sound;
+				}
+				if (soundUrl != null && soundUrl != "")
+					SoundManager.playAudioByUrl(soundUrl);
+			}
+
+			private function lockItem():void
+			{
+				if (extraText.visible && extraText.includeInLayout)
+				{
+					if (extraText.alpha == 1)
+					{
+						extraText.alpha = 0;
+					}
+					else
+					{
+						extraText.alpha = 1;
+					}
+				}
+				else
+				{
+					lockCue();
+				}
+			}
+
+			private function lockResponse():void
+			{
+				if (responsesContainer.alpha == 1)
+				{
+					responsesContainer.alpha = 0;
+				}
+				else
+				{
+					responsesContainer.alpha = 1;
+				}
+			}
+
+			private function lockCue():void
+			{
+				if (goalsContainer.alpha == 1)
+				{
+					goalsContainer.alpha = 0;
+				}
+				else
+				{
+					goalsContainer.alpha = 1;
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%">
+		<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+			<s:VGroup width="100%" horizontalAlign="center" verticalAlign="middle" gap="15" id="goalsContainer" paddingTop="10" paddingBottom="15" alpha="0" click="lockCue()" useHandCursor="true" buttonMode="true">
+				<s:RichText id="goalText" width="100%" textAlign="center" fontSize="50"/>
+				<s:RichText id="extraText" width="100%" textAlign="center" includeInLayout="false" visible="false" fontSize="30"/>
+			</s:VGroup>
+			<s:BorderContainer width="100%" styleName="shortLine" height="1"/>
+			<s:VGroup width="100%" useHandCursor="true" buttonMode="true" paddingLeft="10" paddingTop="10" id="responsesContainer" alpha="0" click="lockResponse()">
+				<s:Button id="pos" height="20" label="" styleName="posButton"/>
+				<s:RichText id="responseText" width="100%" text="" textAlign="center" buttonMode="true" useHandCursor="true" horizontalCenter="1" fontSize="40"/>
+			</s:VGroup>
+		</s:VGroup>
+		<s:HGroup width="100%" height="28" gap="10" verticalAlign="middle">
+			<s:Button width="22" height="22" styleName="smallSpeakerButton" buttonMode="true" useHandCursor="true" click="reSpeak()"/>
+			<s:Button width="22" height="22" styleName="smallHideButton" buttonMode="true" useHandCursor="true" click="lockItem()"/>
+		</s:HGroup>
+	</s:VGroup>
+</s:NavigatorContent>

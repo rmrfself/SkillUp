@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" backgroundColor="#3D3D3D" creationComplete="initApp()">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		.resourceProgressBar{
+			trackSkin: ClassReference("org.enjoytalk.assets.skins.blue.ResourceLoadTrack");
+			barSkin:  ClassReference("org.enjoytalk.assets.skins.blue.ResourceLoadBar");
+			maskSkin: ClassReference("org.enjoytalk.assets.skins.blue.ResourceLoadBar");
+			fontFamily: 宋体;
+			fontSize: 12;
+		}	
+	</fx:Style>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.core.FlexGlobals;
+			import mx.events.ModuleEvent;
+			import mx.events.StyleEvent;
+			import mx.modules.ModuleLoader;
+			import mx.rpc.events.FaultEvent;
+
+			import org.enjoytalk.ApplicationFacade;
+			import org.enjoytalk.model.CourseProxy;
+			import org.enjoytalk.model.UserProxy;
+			import org.enjoytalk.model.vo.ConstVar;
+			import org.enjoytalk.view.components.custom.AppConstants;
+			import org.enjoytalk.view.components.custom.FontManager;
+			import org.enjoytalk.view.components.custom.LanguageCodeManager;
+			import org.enjoytalk.view.components.custom.StyleManagers;
+
+
+			private var courseProxy:CourseProxy;
+
+			private var userProxy:UserProxy;
+
+			private var urlReq:URLRequest;
+
+			private var timer:Timer;
+
+			public var imageLoader:Loader;
+			public var soundEffectLoader:Loader;
+
+			private var loaderContext:LoaderContext;
+
+			private var fontLoader:FontManager = new FontManager("");
+
+			public static const DATA_LOAD_COMPLETED:String = "dataLoadCompleted";
+
+			private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+
+			public var imageCompleteCallback:Function;
+			public var setSoundEffectCallback:Function;
+			private var loadingList:Array = [loadUser, loadCourse, loadFont, loadStyle, loadBackgroundImage, loadSoundEffect];
+			private var progressPart:Array = [5, 5, 15, 15, 10, 10]
+			private var loadIndex:Number = 0;
+			private var loadBytes:Number = 0;
+
+			private var loadingValue:Number = 0;
+
+
+			public function initApp():void
+			{
+				loadLabel.text = "正在加载..";
+				setProgressBar(0);
+				loaderContext = new LoaderContext();
+				courseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+				userProxy = facade.retrieveProxy(UserProxy.NAME) as UserProxy;
+				loaderContext.applicationDomain = ApplicationDomain.currentDomain;
+				startLoader();
+			}
+
+			private function startLoader():void
+			{
+				if (loadIndex < loadingList.length)
+				{
+					var callbackLoading:Function = loadingList[loadIndex];
+					callbackLoading();
+				}
+			}
+
+			/**
+			 * user data  ...
+			 *
+			 * */
+			private function loadUser():void
+			{
+				userProxy.loadUser(userDataLoaded, loadUserProgress, userDataFailed);
+			}
+
+			public function loadUserProgress(e:ProgressEvent):void
+			{
+				if ((loadIndex < loadingList.length) && (e.bytesTotal > 0))
+				{
+				}
+			}
+
+			public function userDataLoaded(event:Event):void
+			{
+				moveForward();
+			}
+
+			public function userDataFailed(event:FaultEvent):void
+			{
+				showError("用户资料加载失败..");
+				new Timer(1000).start();
+				moveForward();
+			}
+
+			/**
+			 * course data load ...
+			 *
+			 * **/
+			public function loadCourse():void
+			{
+				courseProxy.loadCourse(onCourseLoaded, onCourseProgress, onCourseFail);
+			}
+
+			public function onCourseProgress(e:ProgressEvent):void
+			{
+				if (loadIndex < loadingList.length)
+				{
+				}
+			}
+
+			public function onCourseLoaded(event:Event):void
+			{
+				moveForward();
+			}
+
+			public function onCourseFail(event:FaultEvent):void
+			{
+				showError("课程信息加载失败,加载过程终止");
+			}
+
+			/**
+			 *  style loader
+			 *
+			 * */
+			public function loadStyle():void
+			{
+				var styleLoader:StyleManagers = StyleManagers.getInstance();
+				styleLoader.loadStyle(styleManager, "Default.swf", onStyleLoaded, onStyleFail, onStyleProgress);
+			}
+
+			public function onStyleLoaded(event:StyleEvent):void
+			{
+				moveForward();
+			}
+
+			public function onStyleProgress(e:StyleEvent):void
+			{
+				if (loadIndex < loadingList.length)
+				{
+					loadBytes = Math.floor(progressPart[loadIndex] * (e.bytesLoaded / e.bytesTotal));
+					setProgressBar(loadBytes);
+				}
+			}
+
+			public function onStyleFail(e:StyleEvent):void
+			{
+				showError("样式表加载失败,加载过程终止");
+			}
+
+			/**
+			 *  load font ..
+			 *
+			 * */
+			public function loadFont():void
+			{
+				var fontManager:FontManager = FontManager.getInstance();
+				var fontList:Array = LanguageCodeManager.getInstance().getFontList();
+				fontManager.loadFonts(fontList, onFontLoaded, onFontProgress, onFontFail);
+			}
+
+			public function onFontLoaded(e:Event):void
+			{
+				moveForward();
+			}
+
+			public function onFontFail(e:IOErrorEvent):void
+			{
+				showError("字体加载失败");
+			}
+
+			public function onFontProgress(e:ProgressEvent):void
+			{
+				if (loadIndex < loadingList.length)
+				{
+					loadBytes = Math.floor(progressPart[loadIndex] * (e.bytesLoaded / e.bytesTotal));
+					setProgressBar(loadBytes);
+				}
+			}
+
+
+			public function loadBackgroundImage():void
+			{
+				var imageUrl:String = AppConstants.defaultBackgroundImage;
+				imageLoader = new Loader();
+				imageLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onImageProgress);
+				imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, onImageComplete);
+				imageLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, imageLoadError);
+				var imageRequest:URLRequest = new URLRequest(imageUrl);
+				imageLoader.load(imageRequest, loaderContext);
+			}
+
+			public function onImageProgress(e:ProgressEvent):void
+			{
+				if (loadIndex < loadingList.length)
+				{
+					loadBytes = Math.floor(progressPart[loadIndex] * (e.bytesLoaded / e.bytesTotal));
+					setProgressBar(loadBytes);
+				}
+			}
+
+			public function imageLoadError(event:IOErrorEvent):void
+			{
+				moveForward();
+			}
+
+			public function onImageComplete(e:Event):void
+			{
+				moveForward();
+			}
+
+
+			public function loadSoundEffect():void
+			{
+				var soundRequest:URLRequest = new URLRequest(AppConstants.skillUpSoundEffect);
+				soundEffectLoader = new Loader();
+				soundEffectLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, soundLoadComplete);
+				soundEffectLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onSoundProgress);
+				soundEffectLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, soundLoadError);
+				soundEffectLoader.load(soundRequest, loaderContext);
+			}
+
+			private function soundLoadError(event:IOErrorEvent):void
+			{
+				delayLoading();
+			}
+
+			private function soundLoadComplete(event:Event):void
+			{
+				delayLoading();
+			}
+
+
+			private function onSoundProgress(e:ProgressEvent):void
+			{
+				if (loadIndex < loadingList.length)
+				{
+					loadBytes = Math.floor(progressPart[loadIndex] * (e.bytesLoaded / e.bytesTotal));
+					setProgressBar(loadBytes);
+				}
+			}
+
+			/**
+			 * load end
+			 * **/
+
+			public function delayLoading():void
+			{
+				if (loadingValue < 100)
+				{
+					loadProgress.setProgress(100, 100);
+				}
+				loadLabel.text = "加载完毕";
+				timer = new Timer(1000);
+				timer.addEventListener(TimerEvent.TIMER, delayComplete);
+				timer.start();
+			}
+
+			public function delayComplete(e:TimerEvent):void
+			{
+				timer.stop();
+				dispatchEvent(new Event(DATA_LOAD_COMPLETED));
+			}
+
+			public function setProgressBar(value:Number):void
+			{
+				var totalBytes:Number = loadingValue + value;
+				loadLabel.text = "正在加载" + totalBytes + "%..";
+				loadProgress.setProgress(totalBytes, 100);
+			}
+
+			private function showError(msg:String):void
+			{
+				errorMsg.text = msg;
+			}
+
+			private function moveForward():void
+			{
+				startLoader();
+				loadingValue = loadingValue + loadBytes;
+				loadIndex++;
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<s:BorderContainer width="600" height="350" id="loader" backgroundColor="#0096DB" cornerRadius="8" borderVisible="false">
+			<s:VGroup horizontalAlign="center" verticalAlign="middle" width="100%" height="100%">
+				<s:SWFLoader source="assets/logo_skillup.swf" left="0" top="0"/>
+				<s:HGroup horizontalAlign="center" horizontalCenter="true" paddingTop="8" width="320" height="30">
+					<mx:ProgressBar id="loadProgress" fontWeight="normal" mode="manual" horizontalCenter="1" height="18" horizontalGap="0" label="" labelPlacement="right" maximum="100" minimum="0" styleName="resourceProgressBar"/>
+				</s:HGroup>
+				<s:Label width="250" color="#FFFFFF" fontSize="12" fontWeight="bold" textAlign="center" id="loadLabel"/>
+			</s:VGroup>
+			<s:RichText id="siteAdv" y="315" width="100%" right="36" color="0xFFFFFF" fontFamily="Arial" fontSize="16" fontWeight="bold" textAlign="right" text="Orivon online learning system"/>
+		</s:BorderContainer>
+		<s:Label id="errorMsg" left="8" bottom="8" color="red" fontSize="12"/>
+	</s:VGroup>
+</s:BorderContainer>

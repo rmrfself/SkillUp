@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:local="org.enjoytalk.view.components.custom.*" show="initView()" hide="cleanUp()">
+	<fx:Declarations>
+		<s:Sequence id="successEffect">
+			<s:Fade target="{resultCheck}" alphaFrom="1" alphaTo="0" repeatBehavior="reverse" repeatCount="2"/>
+		</s:Sequence>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.utils.StringUtil;
+
+			import org.enjoytalk.model.vo.Item;
+			import org.enjoytalk.model.vo.StudyParameter;
+			import org.enjoytalk.view.components.custom.SoundManager;
+			import org.enjoytalk.view.events.AnswerResult;
+			import org.enjoytalk.view.events.ToolsEvent;
+
+			private var correctChars:String = "";
+
+			private var _itemData:Item;
+			private var _studyParameter:StudyParameter;
+
+			private var _focusObserver:flash.utils.Timer;
+
+			public function setContent(item:Item, param:StudyParameter):void
+			{
+				_itemData = item;
+				_studyParameter = param;
+			}
+
+			private function cleanUp():void
+			{
+				masterSpell.cleanUp();
+			}
+
+			private function initView():void
+			{
+				try
+				{
+					masterSpell.item = _itemData;
+					masterSpell.display();
+				}
+				catch (e:Error)
+				{
+					currentState = "disabled";
+				}
+				if (masterSpell.allCorrectText != null && masterSpell.allCorrectText.length > 0)
+				{
+					resultCheck.text = correctChars = masterSpell.allCorrectText;
+					if (_focusObserver == null)
+					{
+						_focusObserver = new flash.utils.Timer(1);
+						_focusObserver.addEventListener(TimerEvent.TIMER, setSpellFocus);
+						_focusObserver.start();
+					}
+					else
+					{
+						_focusObserver.start();
+					}
+					resultCheck.setStyle("styleName", "spellPracticeText");
+					playsound();
+					currentState = "enabled";
+				}
+				else
+				{
+					currentState = "disabled";
+				}
+			}
+
+			private function inputHandler(event:ToolsEvent):void
+			{
+				resultCheck.setCurrentState("error");
+			}
+
+			private function setSpellFocus(event:TimerEvent):void
+			{
+				_focusObserver.stop();
+			}
+
+			private function playsound():void
+			{
+				//SoundManager.playAudioByUrl(item.sound);
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="enabled"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+		<s:HGroup width="100%" height="30%" verticalAlign="middle" paddingLeft="10" paddingRight="10" includeIn="enabled">
+			<s:BorderContainer width="100%" height="48" styleName="spellPracticePanel" borderVisible="false">
+				<s:VGroup width="100%" height="100%" paddingLeft="8" paddingRight="8" verticalAlign="middle">
+					<s:RichText id="resultCheck" width="100%" color="#0068B7" fontSize="30" errorColor="#ff3366" errorString="拼写错误" fontWeight="bold" useHandCursor="true" mouseChildren="false" buttonMode="true" verticalCenter="1"/>
+				</s:VGroup>
+			</s:BorderContainer>
+		</s:HGroup>
+		<s:VGroup width="100%" height="70%" verticalAlign="middle" paddingLeft="10" includeIn="enabled">
+			<s:Label fontSize="14" text="拼写练习: " width="100%"/>
+			<s:HGroup width="100%" height="58">
+				<local:SpellBox id="masterSpell" inputHandler="inputHandler(event)" styleName="spellInput"/>
+			</s:HGroup>
+		</s:VGroup>
+		<s:Label text="当前单词不支持拼写." includeIn="disabled" verticalCenter="1" horizontalCenter="1"/>
+	</s:VGroup>
+</s:NavigatorContent>

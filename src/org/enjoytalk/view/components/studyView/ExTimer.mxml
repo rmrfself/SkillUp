@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="24" horizontalAlign="center">
+	<fx:Script>
+		<![CDATA[
+			private var _answertime:Number;
+
+			public function set answertime(answertime:Number):void
+			{
+				_answertime=answertime;
+			}
+
+			[Bindable]
+			public function get answertime():Number
+			{
+				return _answertime;
+			}
+
+			public function markUpAnswer():void
+			{
+				dispatchEvent(new Event("timeEnd"));
+			}
+		]]>
+	</fx:Script>
+	<s:Resize id="resize" repeatCount="1" target="{progress}" widthFrom="235" widthTo="0" duration="{answertime}" effectEnd="markUpAnswer()"/>
+	<s:Group width="240" height="24" styleName="subTimer">
+		<s:BorderContainer id="subTimerBar" x="3" width="235" height="24" backgroundColor="0xFF8300" added="{resize.play()}"/>
+	</s:Group>
+</s:HGroup>

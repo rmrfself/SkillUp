@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SparkSkinning/mySkins/ContainerBorderSkin.mxml -->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Metadata>
+		[HostComponent("spark.components.BorderContainer")]
+	</fx:Metadata>
+	<s:states>
+		<s:State name="preview"/>
+		<s:State name="study"/>
+		<s:State name="over"/>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Group id="group2" includeIn="preview" x="17" y="0">
+		<s:Rect height="12" id="rect1" radiusX="6" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect2" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group id="group6" includeIn="preview" x="17" y="43">
+		<s:Group id="group1" x="0" y="0">
+			<s:Rect height="12" id="rect3" radiusX="6" width="110" x="0" y="7">
+				<s:fill>
+					<s:SolidColor color="#30BEF1"/>
+				</s:fill>
+			</s:Rect>
+			<s:Rect height="12" id="rect4" width="110" x="0" y="0">
+				<s:fill>
+					<s:SolidColor color="#30BEF1"/>
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+		<s:Rect height="12" id="rect0" radiusX="6" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect5" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect6" radiusX="6" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect7" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Rect height="18" id="rect8" includeIn="preview" width="110" x="17" y="22">
+		<s:fill>
+			<s:SolidColor color="#0091C5"/>
+		</s:fill>
+	</s:Rect>
+	<s:RichText color="#FFFFFF" fontFamily="Arial" fontSize="12" id="richtext2" includeIn="preview" tabStops="S0" text="预览" x="59" y="4"/>
+	<s:RichText color="#2B4381" fontFamily="Arial" fontSize="12" id="richtext1" includeIn="preview" tabStops="S0 S50" text="学习" x="59" y="25"/>
+	<s:RichText color="#2B4381" fontFamily="Arial" fontSize="12" id="richtext3" includeIn="preview" tabStops="S0 S50" text="结束" x="59" y="46"/>
+	<s:Group id="group4" includeIn="study" x="17" y="1">
+		<s:Rect height="12" id="rect9" radiusX="6" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect10" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group id="group5" includeIn="study" x="17" y="42">
+		<s:Group id="group3" x="0" y="0">
+			<s:Rect height="12" id="rect11" radiusX="6" width="110" x="0" y="7">
+				<s:fill>
+					<s:SolidColor color="#30BEF1"/>
+				</s:fill>
+			</s:Rect>
+			<s:Rect height="12" id="rect12" width="110" x="0" y="0">
+				<s:fill>
+					<s:SolidColor color="#30BEF1"/>
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+		<s:Rect height="12" id="rect13" radiusX="6" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect14" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect15" radiusX="6" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect16" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Rect height="18" id="rect17" includeIn="study" width="110" x="17" y="22">
+		<s:fill>
+			<s:SolidColor color="#30BEF1"/>
+		</s:fill>
+	</s:Rect>
+	<s:RichText color="#2B4381" fontFamily="Arial" fontSize="12" id="richtext0" includeIn="study" tabStops="S0 S50" text="预览" x="59" y="5"/>
+	<s:RichText color="#FFFFFF" fontFamily="Arial" fontSize="12" id="richtext4" includeIn="study" tabStops="S0" text="学习" x="59" y="25"/>
+	<s:RichText color="#2B4381" fontFamily="Arial" fontSize="12" id="richtext5" includeIn="study" tabStops="S0 S50" text="结束" x="59" y="45"/>
+	<s:Group id="group9" includeIn="over" x="17" y="1">
+		<s:Rect height="12" id="rect18" radiusX="6" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect19" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#0091C5"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group id="group10" includeIn="over" x="17" y="42">
+		<s:Group id="group8" x="0" y="0">
+			<s:Rect height="12" id="rect20" radiusX="6" width="110" x="0" y="7">
+				<s:fill>
+					<s:SolidColor color="#30BEF1"/>
+				</s:fill>
+			</s:Rect>
+			<s:Rect height="12" id="rect21" width="110" x="0" y="0">
+				<s:fill>
+					<s:SolidColor color="#30BEF1"/>
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+		<s:Rect height="12" id="rect22" radiusX="6" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect23" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect24" radiusX="6" width="110" x="0" y="7">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="12" id="rect25" width="110" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#30BEF1"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Rect height="18" id="rect26" includeIn="over" width="110" x="17" y="22">
+		<s:fill>
+			<s:SolidColor color="#0091C5"/>
+		</s:fill>
+	</s:Rect>
+	<s:RichText color="#2B4381" fontFamily="Arial" fontSize="12" id="richtext6" includeIn="over" tabStops="S0 S50" text="预览" x="59" y="5"/>
+	<s:RichText color="#2B4381" fontFamily="Arial" fontSize="12" id="richtext7" includeIn="over" tabStops="S0 S50" text="学习" x="59" y="25"/>
+	<s:RichText color="#FFFFFF" fontFamily="Arial" fontSize="12" id="richtext8" includeIn="over" tabStops="S0" text="结束" x="59" y="45"/>
+	<s:Path data="M 111.75 96.50 L 0.04 97.00 55.46 0.00 Z " height="14.95" id="path5" includeIn="over" rotation="91.636" width="11.75" x="15.5" y="45">
+		<s:fill>
+			<s:SolidColor color="#FDFF00"/>
+		</s:fill>
+	</s:Path>
+	<s:Path data="M 111.75 96.50 L 0.04 97.00 55.46 0.00 Z " height="14.95" id="path0" includeIn="over" rotation="-92.172" width="11.75" x="128.613" y="55.813">
+		<s:fill>
+			<s:SolidColor color="#FDFF00"/>
+		</s:fill>
+	</s:Path>
+	<s:Path data="M 111.75 96.50 L 0.04 97.00 55.46 0.00 Z " height="14.95" id="path1" includeIn="study" rotation="91.636" width="11.75" x="15.5" y="26">
+		<s:fill>
+			<s:SolidColor color="#FDFF00"/>
+		</s:fill>
+	</s:Path>
+	<s:Path data="M 111.75 96.50 L 0.04 97.00 55.46 0.00 Z " height="14.95" id="path2" includeIn="study" rotation="-92.172" width="11.75" x="128.613" y="36.813">
+		<s:fill>
+			<s:SolidColor color="#FDFF00"/>
+		</s:fill>
+	</s:Path>
+	<s:Path data="M 111.75 96.50 L 0.04 97.00 55.46 0.00 Z " height="14.95" id="path3" includeIn="preview" rotation="-92.172" width="11.75" x="128.613" y="16.813">
+		<s:fill>
+			<s:SolidColor color="#FDFF00"/>
+		</s:fill>
+	</s:Path>
+	<s:Path data="M 111.75 96.50 L 0.04 97.00 55.46 0.00 Z " height="14.95" id="path4" includeIn="preview" rotation="91.636" width="11.75" x="15.5" y="5">
+		<s:fill>
+			<s:SolidColor color="#FDFF00"/>
+		</s:fill>
+	</s:Path>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="study" toState="preview">
+			<s:Parallel>
+				<s:Parallel target="{group2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group6}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect8}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group4}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group5}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect17}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext4}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext5}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path4}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

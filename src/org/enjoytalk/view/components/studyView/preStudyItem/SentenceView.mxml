@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:local="org.enjoytalk.view.components.custom.*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" show="initView()">
+	<fx:Script>
+		<![CDATA[
+			import flash.text.StyleSheet;
+
+			import flashx.textLayout.conversion.TextConverter;
+
+			import org.enjoytalk.model.vo.Item;
+			import org.enjoytalk.model.vo.SentenceData;
+			import org.enjoytalk.model.vo.StudyParameter;
+			import org.enjoytalk.view.components.custom.LanguageCodeManager;
+			import org.enjoytalk.view.components.custom.SoundManager;
+
+			private var _itemData:Item;
+			private var _sentenceData:SentenceData;
+			private var _studyParameter:StudyParameter;
+
+			public function setContent(item:Item, param:StudyParameter):void
+			{
+				this._itemData=item;
+				_studyParameter=param;
+				if (_itemData == null)
+				{
+					throw new Error("item data is null");
+				}
+				this._sentenceData=_itemData.sentence;
+			}
+
+			internal function initView():void
+			{
+				setSentenceStyle();
+				var _sentenceTxt:String=_sentenceData.text;
+				var regex:RegExp=new RegExp(_itemData.cue.text, "ig");
+				_sentenceTxt=_sentenceTxt.replace(regex, "<a><font color='#FFC90E'>" + _itemData.cue.text + "</font></a>");
+				_sentenceTxt=("<p>" + _sentenceTxt + "</p>");
+				sentenceText.textFlow=TextConverter.importToFlow(_sentenceTxt, TextConverter.TEXT_FIELD_HTML_FORMAT)
+				translationText.text=_sentenceData.translation;
+				// image preview
+				if (_sentenceData.image != null)
+				{
+					imagePreviewer.setPreviewImage(_sentenceData.image);
+					imagePreviewer.visible=true;
+				}
+				else
+				{
+					imagePreviewer.visible=false;
+				}
+				playSound();
+				setSentenceStyle();
+			}
+
+			private function reStudyText():void
+			{
+				translationText.visible=!translationText.visible;
+				playSound();
+			}
+
+			private function playSound():void
+			{
+
+			}
+
+			private function setSentenceStyle():void
+			{
+				var cueCode:String=LanguageCodeManager.getInstance().cueLanguageCode;
+				var responseCode:String=LanguageCodeManager.getInstance().responseLanguageCode;
+				sentenceText.setStyle("styleName", "sentenceText_" + cueCode);
+				translationText.setStyle("styleName", "sentenceTran_" + responseCode);
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%">
+		<s:Group width="100%" height="100%">
+			<s:VGroup width="100%" height="100%" paddingTop="30" paddingLeft="10" paddingRight="10" paddingBottom="10">
+				<s:RichText id="sentenceText" width="100%" buttonMode="true" useHandCursor="true" mouseChildren="false" paddingBottom="10" styleName="sentenceText"/>
+				<s:BorderContainer styleName="shortLine" width="100%" height="1"/>
+				<mx:Text id="translationText" width="100%" buttonMode="true" useHandCursor="true" mouseChildren="false" paddingTop="10" styleName="sentenceTran"/>
+			</s:VGroup>
+			<local:ImagePreviewer width="180" height="180" id="imagePreviewer" backgroundColor="#FFFFFF" right="10" bottom="20" visible="false"/>
+			<s:HGroup width="100%" height="28" gap="10" verticalAlign="middle" bottom="5">
+				<s:Button width="22" height="22" styleName="smallSpeakerButton" click="playSound()" buttonMode="true" useHandCursor="true"/>
+				<s:Button width="22" height="22" styleName="smallHideButton" click="reStudyText()" buttonMode="true" useHandCursor="true"/>
+			</s:HGroup>
+		</s:Group>
+	</s:VGroup>
+</s:NavigatorContent>

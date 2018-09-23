@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:local="org.enjoytalk.view.components.custom.*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" autoDrawBackground="false" height="86">
+	<fx:Metadata>
+		[Event(name="selectedOver" , type="org.enjoytalk.view.events.AnswerResult")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import org.enjoytalk.view.events.AnswerResult;
+
+			private function markupAnswer():void
+			{
+				if (data.isAnswer)
+				{
+					contentHolder.isRightAnswer=true;
+					contentHolder.skin.setCurrentState("rightAnswer");
+				}
+				else
+				{
+					contentHolder.isWrongAnswer=true;
+					contentHolder.skin.setCurrentState("wrongAnswer");
+				}
+				contentHolder.enabled=false;
+				contentHolder.useHandCursor=false;
+				contentHolder.buttonMode=false;
+				data.isEnable=false;
+				contentHolder.invalidateSkinState();
+			}
+
+			public function showHiddenAnswer():void
+			{
+				if (data.isEnable)
+				{
+					contentHolder.enabled=false;
+					data.isEnable=false;
+					if (data.isAnswer)
+					{
+						contentHolder.showAnswer=true;
+						contentHolder.skin.setCurrentState("showAnswer");
+						contentHolder.invalidateSkinState();
+						if (data.extraData != null)
+						{
+							contentHolder.label=data.extraData;
+						}
+					}
+				}
+			}
+
+			public function resetContentHolder():void
+			{
+				contentHolder.enabled=true;
+				contentHolder.useHandCursor=true;
+				contentHolder.buttonMode=true;
+				contentHolder.showAnswer=false;
+				contentHolder.isRightAnswer=false;
+				contentHolder.isWrongAnswer=false;
+				contentHolder.skin.setCurrentState("up");
+				contentHolder.invalidateSkinState();
+				contentHolder.addEventListener(MouseEvent.CLICK, doAnswer);
+			}
+
+			private function doAnswer(event:MouseEvent):void
+			{
+				if (data.isEnable)
+				{
+					this.owner.dispatchEvent(new AnswerResult("selectedOver", data.isAnswer, true));
+					markupAnswer();
+				}
+			}
+		]]>
+	</fx:Script>
+	<local:SelectionButton id="contentHolder" label="{data.text}" width="100%" height="100%" click="doAnswer(event)" styleName="{'selectionRenderer_' + data.language}"/>
+</s:ItemRenderer>

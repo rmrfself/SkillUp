@@ -1,0 +1,566 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+global
+{
+	modal-transparency: 0.1;
+	modal-transparency-color: #FFFFFF;
+	modal-transparency-duration: 200;
+	fontSize: 12;
+	fontFamily: 宋体;
+}
+
+s|Button {      
+	fontSize: 12;
+	fontWeight: normal;
+}
+
+.skillupApp{
+	backgroundColor:#999999;
+	backgroundGradientColors: #53AAF4, #F7F9FB;
+	fontSize: 12;
+	themeColor:#288bca;
+	color: #ffffff;	disabled-color: #656361;
+}
+
+.appWrapper{
+	horizontalScrollPolicy: off;
+}
+
+#mainBody{
+	borderColor:#FFFFFF;
+	borderStyle: solid;
+	borderThickness: 0.1;
+	cornerRadius: 10;
+	background-alpha:0.5;
+	background-color:#93baf6;
+}
+.innerBody{
+	paddingLeft:20;
+	paddingRight:20;
+	paddingTop:20;
+	paddingBottom:20;
+}
+
+.navItem{
+	skin: ClassReference(null);
+	color: #FFFFFF;
+	fontWeight: "bold";
+}
+
+#appMessage{
+	color: #CC0602;
+}
+
+#errorMsg{
+	color: "red";
+}
+
+.welcomePanel{
+	cornerRadius: 6;
+	borderThickness: 0;
+	borderColor:#FFFFFF;
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.WelcomePanel"); 
+}
+
+.welcomeMessage{
+	fontWeight:bold;
+	font-size: 12;
+}
+
+.sidePanel{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SideBar"); 
+}
+
+.sideTitle{
+	fontWeight:bold;
+}
+
+.contentPanel{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.ContentPanel"); 
+	cornerRadius: 10;
+}
+
+.previewList{
+	contentBackgroundAlpha: 0;
+	contentBackgroundColor:#009FD9;
+}
+
+.previewTitleLabel{
+	fontWeight:bold;
+	color: #9BDAFF;
+	font-size: 13;
+	letterSpacing:2;
+}
+
+.shortLine{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.ShortSplitter"); 
+}
+
+.imagePreviewer{
+	borderColor: #FFFFFF;
+	borderWeight:４;
+	roundedCorner: 8;
+}
+
+.messagePanel{
+	backgroundColor: #FFFFFF;
+	cornerRadius: 6;
+}
+
+.messageText{
+	fontWeight:bold;
+	fontSize: 15;
+	color: #009ED8;
+	letterSpacing:2;
+}
+
+.subNav{
+	backgroundColor: #FFFFFF;
+	backgroundAlpha: 0.4;
+}
+
+
+.bigStartButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.BigStartButton"); 
+}
+
+.previewItemRenderer{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.PreviewItemRender");
+}
+
+.selectionRenderer_en{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SelectionRenderer");
+	fontSize: 16;
+	color: #336699;
+	fontWeight: bold;
+	fontFamily: Arial, _sans;
+}
+
+.selectionRenderer_ja{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SelectionRenderer");
+	color: #336699;
+	fontSize: 16;
+	font-family: "MS PGothic";
+	fontWeight:bold;
+}
+
+.selectionRenderer_zh-Hans{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SelectionRenderer");
+	color: #336699;
+	fontSize: 14;
+	font-family: 宋体;
+	fontWeight: bold;
+}
+
+.selectionRenderer_zh-Hant{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SelectionRenderer");
+	color: #336699;
+	fontSize: 14;
+	font-family: 宋体;
+	fontWeight: bold;
+}
+
+.configButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.ConfigButton");
+}
+
+.feedbackButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.FeedBackButton");
+}
+
+.helpButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.HelpButton");
+}
+
+.closeButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.CloseButton");
+}
+
+.studyPhase{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.StudyPhase");
+}
+.posButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.PosButton");
+}
+
+.smallSpeakerButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.RoundSpeakButton");
+}
+
+.smallHideButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.RoundHideButton");
+}
+
+.smallRefreshButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.RoundRefreshButton");
+}
+
+.platButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.PlatButton");
+}
+
+.nextButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SmallNextButton");
+}
+
+.knowButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SmallKnowButton");
+}
+
+.unKnowButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SmallUnKnowButton");
+}
+
+.reStudyButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SmallRestudyButton");
+}
+
+.returnHomeButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.ReturnHomeButton");
+}
+
+.bigStudyButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.BigStudyButton");
+}
+
+.loadingProgressBar{
+	trackSkin: ClassReference("org.enjoytalk.assets.skins.blue.LoadingBarTrack");
+}
+
+.listProgressBar{
+	trackSkin: ClassReference("org.enjoytalk.assets.skins.blue.ListProgressTrack");
+	barSkin: ClassReference("org.enjoytalk.assets.skins.blue.ListProgressBar");
+	maskSkin: ClassReference("org.enjoytalk.assets.skins.blue.ListProgressBar");
+}
+
+.helpMessage{
+	fontSize: 14;
+	color: #336699;
+	fontWeight: bold;
+}
+
+.innerTimerTrack{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.TimerTrack");
+}
+
+.innerTimerBar{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.TimerBar");
+}
+
+.goalText_en{
+	fontSize: 50;
+	font-family: Arial, "_sans";
+}
+
+.goalText_ja{
+	fontSize: 50;
+	font-family: "MS PGothic";
+}
+
+.goalText_ja_char{
+	fontSize: 30;
+	font-family: "MS PGothic";
+}
+
+.goalText_zh-Hans{
+	fontSize: 40;
+	font-family: 宋体;
+}
+
+.goalText_zh-Hant{
+	fontSize: 24;
+	font-family: 宋体;
+}
+
+.responseText_en{
+	fontSize: 40;
+	font-family: Arial, "_sans";
+	
+}
+
+.responseText_ja{
+	fontSize: 40;
+	font-family: "MS PGothic";
+}
+
+.responseText_zh-Hans{
+	fontSize: 22;
+	font-family: 宋体;
+}
+
+.responseText_zh-Hant{
+	fontSize: 22;
+	font-family: 宋体;
+}
+
+.spellPracticeText_ja{
+	fontSize: 28;
+	font-family: "MS PGothic";
+}
+
+.spellPracticeText_en{
+	fontSize: 22;
+	font-family: Arial, "_sans";
+}
+
+
+.spellPracticeText_zh-Hans{
+	fontSize: 18;
+	font-family: 宋体;
+}
+
+.spellPracticeText_zh-Hant{
+	fontSize: 18;
+	font-family: 宋体;
+}
+
+.queryText_en{
+	fontSize: 30;
+	font-family: Arial, "_sans";
+}
+
+.queryText_ja{
+	fontSize: 30;
+	font-family: "MS PGothic";
+}
+
+.queryText_zh-Hans{
+	fontSize: 22;
+	font-weight: bold;
+}
+
+.queryText_zh-Hant{
+	fontSize: 22;
+	font-weight: bold;
+}
+
+.spellPracticePanel{
+	backgroundColor: #FFFFFF;
+	cornerRadius: 8;
+}
+
+.sentenceText_en{
+	fontSize: 16;
+	font-family: Arial, "_sans";
+}
+
+.sentenceText_ja{
+	fontSize: 18;
+	font-family: "MS PGothic";
+	font-weight: bold;
+}
+
+.sentenceText_zh-Hans{
+	fontSize: 16;
+	font-family: 宋体;
+}
+
+.sentenceText_zh-Hant{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.sentenceTran_en{
+	fontSize: 14;
+	font-family: Arial, "_sans";
+}
+
+.sentenceTran_ja{
+	fontSize: 16;
+	font-family: "MS PGothic";
+}
+
+.sentenceTran_zh-Hans{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.sentenceTran_zh-Hant{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.spellResultMark{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.SpellResultMark");
+}
+
+.spellCorrectText_en{
+	fontSize: 20;
+	font-family: Arial, "_sans";
+}
+
+.spellCorrectText_ja{
+	fontSize: 26;
+	font-family: "MS PGothic";
+}
+
+.spellCorrectText_zh-Hans{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.spellCorrectText_zh-Hant{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.spellCorrectResponse_zh-Hans{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.spellCorrectResponse_zh-Hant{
+	fontSize: 14;
+	font-family: 宋体;
+}
+
+.spellCorrectResponse_en{
+	fontSize: 12;
+	font-family: Arial, "_sans";
+}
+
+.spellCorrectResponse_ja{
+	fontSize: 22;
+	font-family: "MS PGothic";
+}
+
+
+.homeMainPanel{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.HomeLeftBar");
+}
+
+.miscPanel{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.MiscPanel");
+}
+
+.historyCal{
+	selectionIndicatorSkin: ClassReference("org.enjoytalk.assets.skins.blue.CalOverSkin");
+	todayIndicatorSkin: ClassReference("org.enjoytalk.assets.skins.blue.CalSelectionSkin");
+	rollOverIndicatorSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalOverSkin");
+	prevMonthSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalPreButton");
+	prevMonthOverSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalPreButton");
+	prevMonthDownSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalPreButton");
+	nextMonthSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalNextButton");
+	nextMonthOverSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalNextButton");
+	nextMonthDownSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalNextButton");
+	dayIndicatorSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalDayIndicator");
+	dataIndicatorSkin:ClassReference("org.enjoytalk.assets.skins.blue.CalDataIndicator");
+	dropShadowEnabled: true;
+}
+
+.hisCalHeader{
+	color:#FFFFFF;
+	fontSize:12;
+}
+
+.hisCalWeek{
+	color: #FFFFFF;
+	textAlign: center;
+}
+
+.dataStyleName{
+	fontWeight:bold;
+}
+
+.courseProgressBar{
+	trackSkin: ClassReference("org.enjoytalk.assets.skins.blue.CourseProgressTrack");
+	barSkin: ClassReference("org.enjoytalk.assets.skins.blue.CourseProgressBar");
+	maskSkin: ClassReference("org.enjoytalk.assets.skins.blue.CourseProgressBar");	
+}
+
+.commonRadioButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.CommonRadioButton");
+}
+
+.commonCheckBox{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.CommonCheckBox");
+}
+
+.homeStartButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.HomeStartButton");
+}
+
+.previewItemProgress{
+	trackSkin: ClassReference("org.enjoytalk.assets.skins.blue.ItemProgressTrack");
+	barSkin: ClassReference("org.enjoytalk.assets.skins.blue.ItemProgressBar");
+	maskSkin: ClassReference("org.enjoytalk.assets.skins.blue.ItemProgressBar");	
+}
+
+.previewCueText_en{
+	fontSize: 14;
+	font-family: Arial, "_sans";
+}
+
+.previewCueText_ja{
+	fontSize: 16;
+	font-family: "MS PGothic";
+	fontWeight:bold;
+}
+
+.previewCueText_zh-Hans{
+	fontSize: 12;
+	fontWeight:bold;
+}
+
+.previewCueText_zh-Hant{
+	fontSize: 12;
+	fontWeight:bold;
+}
+
+.previewResponseText_en{
+	fontSize: 12;
+	font-family: Arial, "_sans";
+}
+
+.previewResponseText_ja{
+	fontSize: 16;
+	font-family: "MS PGothic";
+	fontWeight:bold;
+}
+
+.previewResponseText_zh-Hans{
+	fontSize: 12;
+}
+
+.previewResponseText_zh-Hant{
+	fontSize: 12;
+}
+
+.pauseWindow{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.PauseWindow");
+}
+
+.loginWindow{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.LoginWindow");
+}
+
+.resumeButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.ResumeButton");
+	color: #0061BF;
+	fontWeight: bold;
+}
+
+.commonButton{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.CommonButton");
+	fontWeight:bold;
+	color: #FFFFFF;
+}
+
+.messageWindow{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.MessageWindowSkin");
+	fontWeight:bold;
+	color: #FFFFFF;
+	fontSize: 14;
+}
+
+.pauseButton{
+	fontSize: 14;
+	fontWeight: bold;
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.PauseButton");
+}
+
+.txtInput{
+	skinClass: ClassReference("org.enjoytalk.assets.skins.blue.CommonTextInput");
+}

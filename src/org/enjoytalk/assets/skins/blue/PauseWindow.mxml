@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Metadata>
+		[HostComponent("spark.components.BorderContainer")]
+	</fx:Metadata>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="200" radiusX="8" width="360" x="0" y="0">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Rect>
+	<s:Rect height="162" radiusX="8" width="344" x="8" y="30">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#0061BF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#00A0DA" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:RichText color="#FFFFFF" fontFamily="Arial" fontSize="15" tabStops="S0 S50 S100 S150 S200" text="点击下面“继续学习”按钮，继续学习" x="65" y="84"/>
+	<s:RichText color="#009CFF" fontFamily="Arial" fontSize="14" fontWeight="bold" tabStops="S0" text="暂停" x="11" y="9"/>
+	<s:Group id="contentGroup" left="1" right="1" top="1" bottom="1">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+	</s:Group>
+</s:Skin>

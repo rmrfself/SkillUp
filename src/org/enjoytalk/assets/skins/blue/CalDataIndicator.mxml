@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt">
+	<s:Rect height="20" id="rect1" radiusX="4" width="30" x="0" y="0">
+		<s:fill>
+			<s:SolidColor color="#CCCCCC"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="239.03624346792648" blurX="3" blurY="3" color="#666666" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Rect>
+</s:Skin>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SparkSkinning/mySkins/ContainerBorderSkin.mxml -->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Metadata>
+		[HostComponent("spark.components.BorderContainer")]
+	</fx:Metadata>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="100%" id="rect1" radiusX="8" width="700" x="0" y="0" alpha="0.9">
+		<s:fill>
+			<s:LinearGradient rotation="270">
+				<s:GradientEntry alpha="1.0" color="#009FD9" ratio="0"/>
+				<s:GradientEntry alpha="0.99" color="#0061BF" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+		<s:filters>
+			<s:GlowFilter blurX="6.0" blurY="6.0" inner="false" color="0x5380d0" strength="1" alpha="1.0" quality="2" knockout="false"/>
+		</s:filters>
+	</s:Rect>
+	<s:Group id="contentGroup" left="1" right="1" top="1" bottom="1">
+		<s:layout>
+			<s:VerticalLayout/>
+		</s:layout>
+	</s:Group>
+</s:Skin>

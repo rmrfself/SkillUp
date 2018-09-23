@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" styleName="imagePreviewer" borderVisible="true" cornerRadius="8">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import flash.events.HTTPStatusEvent;
+
+			import mx.controls.Image;
+
+			public function setPreviewImage(url:String):void
+			{
+				if (url != null && url.length > 0)
+				{
+					previewImage.load(url);
+				}
+			}
+
+
+			private function img_httpStatus(evt:HTTPStatusEvent):void
+			{
+				switch (evt.status)
+				{
+					case 200:
+						previewImage.visible=true;
+						loadError.visible=false;
+						break;
+					case 404:
+						previewImage.visible=false;
+						loadError.visible=true;
+						break;
+				}
+			}
+
+			private function reLocateImage(event:Event):void
+			{
+				var borderWeight:Number=Number(getStyle("borderWeight"));
+				if (isNaN(borderWeight))
+				{
+					this.setStyle("borderWeight", 4);
+					borderWeight=4;
+				}
+				var backgroundColor:*=this.getStyle("backgroundColor");
+				if (backgroundColor == null)
+				{
+					this.setStyle("backgroundColor", "#CFC8CC");
+				}
+				var INNER_PADDING:Number=borderWeight * 2;
+				var current_x:Number=0;
+				var current_y:Number=0;
+				var image:Image=event.currentTarget as Image;
+				var c_width:Number=image.contentWidth;
+				var c_height:Number=image.contentHeight;
+				var max_width:Number=this.width;
+				var mx_height:Number=this.height;
+				/**
+				 * relocate x
+				 *
+				 * **/
+				if (c_width > max_width)
+				{
+					current_x=(max_width - c_width) / 2;
+				}
+
+				if (c_height > mx_height)
+				{
+					current_y=(mx_height - c_height) / 2;
+				}
+				image.x=current_x + INNER_PADDING / 2;
+				image.y=current_y + INNER_PADDING / 2;
+				if (previewImage.source != null)
+				{
+					outerMask.width=max_width - INNER_PADDING;
+					outerMask.height=mx_height - INNER_PADDING;
+					outerMask.setStyle("borderThickness", 4);
+					outerMask.visible=true;
+					image.mask=outerMask;
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:BorderContainer id="outerMask" backgroundColor="#CFC8CC" cornerRadius="8" visible="false"/>
+	<mx:Image id="previewImage" complete="reLocateImage(event)" scaleContent="true" httpStatus="img_httpStatus(event);"/>
+	<s:Label text="资源无法加载" id="loadError" width="100%" textAlign="center" verticalCenter="1" horizontalCenter="1" visible="false" color="#CCCCCC"/>
+</s:BorderContainer>

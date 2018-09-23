@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:local="org.enjoytalk.view.components.studyView.preStudyItem.*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import org.enjoytalk.model.vo.Item;
+			import org.enjoytalk.model.vo.StudyParameter;
+			import org.enjoytalk.view.components.custom.LanguageCodeManager;
+			import org.enjoytalk.view.components.custom.StringTools;
+
+			public static const REVIEW_INDEX:Number=0;
+			public static const PRACTICE_INDEX:Number=1;
+			public static const SENTENCE_INDEX:Number=2;
+
+			private var _studyParameter:StudyParameter;
+			private var _isReversedMode:Boolean=false;
+
+			private var _itemData:Item;
+
+			public function setStduyContent(item:Item, param:StudyParameter):void
+			{
+				_itemData=item;
+				_studyParameter=param;
+				_isReversedMode=_studyParameter.isReversedMode;
+				studyItemStack.selectedIndex=REVIEW_INDEX;
+				reviewItem.showContent(item, _studyParameter);
+				spellButton.addEventListener(MouseEvent.CLICK, showSpellContent);
+				sentenceButton.addEventListener(MouseEvent.CLICK, showSentenceContent);
+				goalButton.addEventListener(MouseEvent.CLICK, showStudyContent);
+				if (!this._isReversedMode)
+				{
+					if (item.sentences != null && item.sentences.length > 0)
+					{
+						sentenceButton.visible=true;
+					}
+					if (canSpellText(item.cue.text))
+					{
+						spellButton.visible=true;
+					}
+				}
+				else
+				{
+					sentenceButton.visible=false;
+					spellButton.visible=false;
+				}
+				this.currentState="review_item";
+			}
+
+			private function showStudyContent(event:MouseEvent):void
+			{
+				this.currentState="review_item";
+				reviewItem.showContent(_itemData, _studyParameter);
+				studyItemStack.selectedIndex=REVIEW_INDEX;
+			}
+
+			private function showSpellContent(event:MouseEvent):void
+			{
+				this.currentState="spell_practice";
+				studyItemStack.selectedIndex=PRACTICE_INDEX;
+				setSpellContent(_itemData, _studyParameter);
+
+			}
+
+			private function showSentenceContent(event:MouseEvent):void
+			{
+				this.currentState="sentence_learning";
+				studyItemStack.selectedIndex=SENTENCE_INDEX;
+				setSentenceContent(_itemData, _studyParameter);
+			}
+
+			private function setSpellContent(item:Item, param:StudyParameter=null):void
+			{
+				spellPractice.setContent(item, param);
+			}
+
+			private function setSentenceContent(item:Item, param:StudyParameter=null):void
+			{
+				sentenceView.setContent(item, param);
+			}
+
+			private function canSpellText(str:String):Boolean
+			{
+				if (str == null && str.length == 0)
+				{
+					return false;
+				}
+				if (LanguageCodeManager.getInstance().isEnglishCourse() && StringTools.isEnglish(str))
+				{
+					return true;
+				}
+
+				if (LanguageCodeManager.getInstance().isJapaneseCourse() && StringTools.isAllKana(str) && !StringTools.isKanji(str))
+				{
+					return true;
+				}
+				if (LanguageCodeManager.getInstance().isChineseCourse())
+				{
+					return true;
+				}
+				return false;
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="study_item"/>
+		<s:State name="review_item"/>
+		<s:State name="spell_practice"/>
+		<s:State name="sentence_learning"/>
+	</s:states>
+	<s:transitions>
+		<s:Transition toState="review_item">
+			<s:Parallel>
+				<s:Fade target="{goalButton}" alphaFrom="0.5" alphaTo="1" duration="200"/>
+				<s:Fade targets="{[ spellButton, sentenceButton]}" alphaFrom="1" alphaTo="0.5" duration="200"/>
+			</s:Parallel>
+		</s:Transition>
+		<s:Transition toState="spell_practice">
+			<s:Parallel>
+				<s:Fade target="{spellButton}" alphaFrom="0.5" alphaTo="1" duration="200"/>
+				<s:Fade targets="{[goalButton, sentenceButton]}" alphaFrom="1" alphaTo="0.5" duration="200"/>
+			</s:Parallel>
+		</s:Transition>
+		<s:Transition toState="sentence_learning">
+			<s:Parallel>
+				<s:Fade target="{sentenceButton}" alphaFrom="0.5" alphaTo="1" duration="200"/>
+				<s:Fade targets="{[goalButton, spellButton] }" alphaFrom="1" alphaTo="0.5" duration="200"/>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+	<s:VGroup width="100%" height="100%" paddingLeft="6" paddingRight="6">
+		<mx:ViewStack id="studyItemStack" width="100%" height="100%">
+			<local:Review id="reviewItem"/>
+			<local:SpellPractice id="spellPractice"/>
+			<local:SentenceView id="sentenceView"/>
+		</mx:ViewStack>
+		<s:HGroup id="innerNav" width="100%" horizontalAlign="left" verticalAlign="middle" height="36" gap="4" paddingBottom="10" paddingTop="10">
+			<s:Button id="goalButton" width="116" height="28" label="学习单词" styleName="platButton" buttonMode="true" useHandCursor="true" alpha="0.5"/>
+			<s:Button id="spellButton" width="116" height="28" label="拼写练习" styleName="platButton" buttonMode="true" useHandCursor="true" visible="false" alpha="0.5"/>
+			<s:Button id="sentenceButton" width="116" height="28" label="例句" styleName="platButton" buttonMode="true" useHandCursor="true" visible="false" alpha="0.5"/>
+		</s:HGroup>
+	</s:VGroup>
+</s:NavigatorContent>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009">
+	<fx:Metadata>[HostComponent("org.enjoytalk.view.components.custom.SelectionButton")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+		<s:State name="rightAnswer"/>
+		<s:State name="wrongAnswer"/>
+		<s:State name="showAnswer"/>
+		<s:State name="dragging"/>
+	</s:states>
+	<s:Rect id="rect2" includeIn="up,showAnswer,disabled,dragging" radiusX="6" top="0" bottom="0" left="0" right="0">
+		<s:fill>
+			<s:SolidColor color="#CFE7FC"/>
+		</s:fill>
+	</s:Rect>
+	<s:Rect id="rect0" includeIn="down,over,rightAnswer,wrongAnswer" radiusX="6" top="0" bottom="0" left="0" right="0">
+		<s:fill>
+			<s:SolidColor color="#97CBFF"/>
+		</s:fill>
+	</s:Rect>
+	<s:BitmapImage source.wrongAnswer="@Embed('org/enjoytalk/assets/images/wrong.png')" source.rightAnswer="@Embed('org/enjoytalk/assets/images/right.png')" source.showAnswer="@Embed('org/enjoytalk/assets/images/right.png')" verticalCenter="1" right="5"/>
+	<s:RichText id="labelDisplay" textAlign="left" left="10" top="10" maxWidth="500"/>
+</s:SparkSkin>

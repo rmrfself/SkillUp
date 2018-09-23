@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009">
+	<fx:Metadata>[HostComponent("spark.components.RadioButton")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+		<s:State name="upAndSelected"/>
+		<s:State name="overAndSelected"/>
+		<s:State name="downAndSelected"/>
+		<s:State name="disabledAndSelected"/>
+	</s:states>
+	<s:Ellipse height="12" id="ellipse1" includeIn="up" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse0" includeIn="over" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse2" includeIn="down" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse3" includeIn="disabled" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#666666" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse4" includeIn="upAndSelected" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse height="6" id="ellipse5" includeIn="upAndSelected" width="6" x="4" y="4">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse6" includeIn="overAndSelected" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse height="6" id="ellipse7" includeIn="overAndSelected" width="6" x="4" y="4">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse8" includeIn="downAndSelected" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse height="6" id="ellipse9" includeIn="downAndSelected" width="6" x="4" y="4">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#6FC9FF" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Ellipse>
+	<s:Ellipse height="12" id="ellipse10" includeIn="disabledAndSelected" width="12" x="1" y="1">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+		<s:stroke>
+			<s:SolidColorStroke weight="2" caps="none" miterLimit="4" joints="miter" color="#999999"/>
+		</s:stroke>
+	</s:Ellipse>
+	<s:Ellipse height="6" id="ellipse11" includeIn="disabledAndSelected" width="6" x="4" y="4">
+		<s:fill>
+			<s:SolidColor color="#999999"/>
+		</s:fill>
+	</s:Ellipse>
+	<s:RichText id="labelDisplay" x="27" y="3" textAlign="start" color="#FFFFFF" alpha.disabled="0.5" alpha.disabledAndSelected="0.5"/>
+	<s:transitions>
+		<s:Transition fromState="downAndSelected" toState="up" autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse8}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse9}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

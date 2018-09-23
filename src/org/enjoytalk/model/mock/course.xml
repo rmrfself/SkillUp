@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<list list_id="4" title="第１課" type="text"   created_at="2009-04-20">
+	<discription>课程的描述</discription>
+		<items>
+			<item id="1">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[わたし]]></kana>
+                 <kanji><![CDATA[私]]></kanji>
+				 <exp id="3"><![CDATA[我]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[例文1]]></content>
+						 <translate><![CDATA[例文例文]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="2">
+				 <sound path="word3.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[みる]]></kana>
+                 <kanji><![CDATA[見る]]></kanji>
+				 <exp id="3"><![CDATA[看]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="3">
+                         <content><![CDATA[わたしはえおをみるのがすきです]]></content>
+						 <translate><![CDATA[我喜欢看绘画]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="3">
+				 <sound path="word3.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[あたらしい]]></kana>
+                 <kanji><![CDATA[新しい]]></kanji>
+				 <exp id="3"><![CDATA[新的]]></exp>
+                 <pos><![CDATA[形容词]]></pos>
+				 <sentences>
+				     <sentence id="5">
+                         <content><![CDATA[彼の車は新しい]]></content>
+						 <translate><![CDATA[他的车是新的]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="4">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[だいがく]]></kana>
+                 <kanji><![CDATA[大学]]></kanji>
+				 <exp id="3"><![CDATA[大学]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[四月に大学しました]]></content>
+						 <translate><![CDATA[四月份入的大学]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="5">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[はじめる]]></kana>
+                 <kanji><![CDATA[始める]]></kanji>
+				 <exp id="3"><![CDATA[开始]]></exp>
+                 <pos><![CDATA[动词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[テストを始めてくだせい]]></content>
+						 <translate><![CDATA[请开始考试吧]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="6">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[じかん]]></kana>
+                 <kanji><![CDATA[時間]]></kanji>
+				 <exp id="3"><![CDATA[时间]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[今は時間がありません]]></content>
+						 <translate><![CDATA[不知道现在的时间]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="7">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[かのじょ]]></kana>
+                 <kanji><![CDATA[彼女]]></kanji>
+				 <exp id="3"><![CDATA[她;女朋友]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[彼女は秋にけっこんします]]></content>
+						 <translate><![CDATA[她秋天的时候结婚]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 
+			 <item id="8">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[ことば]]></kana>
+                 <kanji><![CDATA[言葉]]></kanji>
+				 <exp id="3"><![CDATA[语言]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[今は時間がありません]]></content>
+						 <translate><![CDATA[不知道现在的时间]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 
+			 <item id="9">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[おきる]]></kana>
+                 <kanji><![CDATA[起きる]]></kanji>
+				 <exp id="3"><![CDATA[起]]></exp>
+                 <pos><![CDATA[动词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[今は時間がありません]]></content>
+						 <translate><![CDATA[不知道现在的时间]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="10">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[はる]]></kana>
+                 <kanji><![CDATA[春]]></kanji>
+				 <exp id="3"><![CDATA[春;春天;春季]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[今は時間がありません]]></content>
+						 <translate><![CDATA[不知道现在的时间]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="11">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[ごぜん]]></kana>
+                 <kanji><![CDATA[午前]]></kanji>
+				 <exp id="3"><![CDATA[上午;上午;上午;上午]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[今は時間がありません]]></content>
+						 <translate><![CDATA[不知道现在的时间]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+			 
+			 <item id="12">
+				 <sound path="word2.mp3"/>
+				 <picture path="abc.jpg"/>
+				 <kana><![CDATA[はたらく]]></kana>
+                 <kanji><![CDATA[働く]]></kanji>
+				 <exp id="3"><![CDATA[工作;工作;工作]]></exp>
+                 <pos><![CDATA[名词]]></pos>
+				 <sentences>
+				     <sentence id="1">
+                         <content><![CDATA[今は時間がありません]]></content>
+						 <translate><![CDATA[不知道现在的时间]]></translate>
+                     </sentence>
+				 </sentences>
+			 </item>
+		</items>
+	</list>
+</root>

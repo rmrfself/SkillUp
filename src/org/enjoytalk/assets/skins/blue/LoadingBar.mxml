@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<s:Rect height="100%" id="rect0" radiusX="6" radiusY="6" width="100%" left="2" right="2" bottom="2" top="2">
+		<s:fill>
+			<s:SolidColor color="#CCCCCC"/>
+		</s:fill>
+	</s:Rect>
+</s:SparkSkin>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:local="*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="showQueryStr()" show="showQueryStr()">
+	<fx:Declarations>
+		<s:Move id="moveIn" duration="1000" xFrom="-200" xTo="10"/>
+		<s:Resize id="imageResize" widthTo="57" heightTo="95" widthFrom="40" heightFrom="70" repeatBehavior="reverse" repeatCount="1"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.effects.easing.Bounce;
+
+			import org.enjoytalk.model.vo.Item;
+			import org.enjoytalk.model.vo.StudyParameter;
+			import org.enjoytalk.view.components.custom.LanguageCodeManager;
+			import org.enjoytalk.view.components.custom.SoundManager;
+
+			private var _isReversedMode:Boolean = false;
+			private var _itemData:Item;
+
+			private var _studyParameter:StudyParameter;
+
+			public function setContent(item:Item, param:StudyParameter):void
+			{
+				this._studyParameter = param;
+				this._isReversedMode = param.isReversedMode;
+				_itemData = item;
+			}
+
+			private function showQueryStr():void
+			{
+				recallContent.text = _itemData.cue.text;
+				if (_isReversedMode)
+				{
+					recallContent.setStyle("styleName", "queryText_" + LanguageCodeManager.getInstance().responseLanguageCode);
+				}
+				else
+				{
+					recallContent.setStyle("styleName", "queryText_" + LanguageCodeManager.getInstance().cueLanguageCode);
+				}
+				if (moveIn.isPlaying)
+				{
+					moveIn.stop();
+				}
+				moveIn.play([queryMessage]);
+				SoundManager.playEffectSound(SoundManager.RECALL);
+				imageResize.play([qMark]);
+			}
+		]]>
+	</fx:Script>
+	<s:VGroup width="100%" height="100%" paddingBottom="6" paddingTop="6" paddingLeft="6" paddingRight="6">
+		<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+			<s:RichText id="recallContent" width="100%" textAlign="center"/>
+			<s:HGroup width="57" height="100" horizontalAlign="center">
+				<s:Image id="qMark" source="@Embed('org/enjoytalk/assets/images/q_mark.png')" alpha="0.5"/>
+			</s:HGroup>
+		</s:VGroup>
+		<s:BorderContainer width="100%" height="32" cornerRadius="6" styleName="helpMessagePanel" borderVisible="false">
+			<s:BorderContainer width="100%" height="100%" id="messageMask"/>
+			<s:Group width="100%" height="100%" mask="{messageMask}">
+				<s:RichText id="queryMessage" text="你知道这个单词吗?" styleName="helpMessage" maskType="clip" x="-300" y="8"/>
+			</s:Group>
+		</s:BorderContainer>
+	</s:VGroup>
+</s:NavigatorContent>

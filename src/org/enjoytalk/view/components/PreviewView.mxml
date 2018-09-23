@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:local="org.enjoytalk.view.components.custom.*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" show="initComleted()">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.core.UIComponent;
+			import mx.events.ListEvent;
+
+			import org.enjoytalk.assets.skins.blue.PreviewItemRender;
+			import org.enjoytalk.model.vo.*;
+			import org.enjoytalk.view.components.custom.AppTimerManager;
+			import org.enjoytalk.view.components.custom.LanguageCodeManager;
+			import org.enjoytalk.view.components.custom.PreviewRender;
+			import org.enjoytalk.view.components.custom.SoundManager;
+			import org.enjoytalk.view.events.DEvent;
+
+			import spark.components.Image;
+
+			public static const PREVIEW_LOADED:String = "loadComleted";
+
+			public var itemsCount:int = 0;
+
+			public function initComleted():void
+			{
+				dispatchEvent(new Event(PREVIEW_LOADED));
+			}
+
+
+			public function setPreviewContent():void
+			{
+				previewList.selectedIndex = 0;
+				var selectedItem:* = previewList.selectedItem;
+				previewGoal.text = selectedItem.text;
+				previewGoal.setStyle("styleName", "previewCueText_" + LanguageCodeManager.getInstance().cueLanguageCode);
+				previewGoal.setStyle("styleName", "previewResponseText_" + LanguageCodeManager.getInstance().cueLanguageCode);
+				previewResponse.text = selectedItem.response;
+				if (selectedItem.imageUrl != null)
+				{
+					this.imagePreviewer.setPreviewImage(selectedItem.imageUrl);
+				}
+			}
+
+			public function itemChanged(event:Event):void
+			{
+				previewGoal.text = event.currentTarget.selectedItem.text;
+				previewResponse.text = event.currentTarget.selectedItem.response;
+				var soundUrl:String = event.currentTarget.selectedItem.soundUrl;
+				try
+				{
+					if (soundUrl != null && soundUrl.length > 0)
+					{
+						playsound(soundUrl);
+					}
+				}
+				catch (e:Error)
+				{
+				}
+				var imageUrl:String = event.currentTarget.selectedItem.imageUrl;
+				if (imageUrl)
+				{
+					imagePreviewer.visible = true;
+					imagePreviewer.setPreviewImage(imageUrl);
+				}
+				else
+				{
+					imagePreviewer.visible = false;
+				}
+				var appTimer:AppTimerManager = AppTimerManager.getInstance();
+				if (!appTimer.isBeginStudy)
+				{
+					appTimer.isBeginStudy = true;
+					appTimer.registerTimerJob(AppTimerManager.STUDY_TIMER, showTimer);
+				}
+			}
+
+
+			private function showTimer(count:Number = 0):void
+			{
+				if (count > 0)
+					globalTimer.setTimer(count);
+			}
+
+			private function playsound(soundUrl:String):void
+			{
+				if (soundUrl != null && soundUrl.length > 0)
+				{
+					SoundManager.playAudioByUrl(soundUrl);
+				}
+			}
+
+			private function setPreviewRenderer(data:*):IFactory
+			{
+				return new ClassFactory(PreviewRender);
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="userOnLine" stateGroups="userState"/>
+		<s:State name="userOffLine" stateGroups="userState"/>
+		<s:State name="withCharactor"/>
+	</s:states>
+	<s:HGroup width="100%" height="100%" gap="6">
+		<s:VGroup width="175" height="100%">
+			<s:BorderContainer styleName="sidePanel" width="100%" height="40">
+				<s:HGroup paddingTop="10" paddingBottom="10" paddingLeft="6" paddingRight="6" width="100%" height="100%">
+					<s:Label styleName="welcomeMessage" text="欢迎使用SkillUp学习工具" width="100%" textAlign="center" fontSize="13"/>
+				</s:HGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="50">
+				<s:HGroup paddingTop="6" paddingBottom="6" paddingLeft="6" paddingRight="6" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+					<mx:Label text="学习时间:"/>
+					<local:GlobalTimer id="globalTimer"/>
+				</s:HGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="104">
+				<s:Group id="phaseBar" width="100%" height="100%">
+					<s:Label width="100%" text="当前所在位置" left="10" top="10"/>
+					<s:BorderContainer styleName="studyPhase" width="110" height="96" id="studyPhase" left="15" top="30"/>
+				</s:Group>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="150">
+				<s:VGroup paddingTop="10" paddingBottom="10" paddingLeft="10" paddingRight="10" width="100%" height="100%">
+					<s:Label styleName="sideTitle" text="本课程内容"/>
+					<s:VGroup width="80%" height="100%" paddingTop="6" paddingBottom="6" paddingLeft="6" paddingRight="6" gap="8">
+						<s:BorderContainer width="100%" styleName="shortLine" height="1"/>
+						<s:Group width="100%">
+							<s:Label text="新单词"/>
+							<s:Label right="10" id="newItemCount" text="0"/>
+						</s:Group>
+						<s:Group width="100%">
+							<s:Label width="80%" text="正在学"/>
+							<s:Label id="learningItemsCount" right="10" text="0"/>
+						</s:Group>
+						<s:BorderContainer width="100%" styleName="shortLine" height="1"/>
+						<s:Group width="100%">
+							<s:Label width="80%" text="总数"/>
+							<s:Label id="totalItemsCount" right="10" text="0"/>
+						</s:Group>
+					</s:VGroup>
+				</s:VGroup>
+			</s:BorderContainer>
+		</s:VGroup>
+		<s:VGroup width="700" height="100%">
+			<s:BorderContainer height="480" width="700" styleName="contentPanel" borderVisible="false">
+				<s:VGroup width="100%" height="100%" paddingLeft="6" paddingRight="6" paddingBottom="6">
+					<s:HGroup width="100%" height="100%">
+						<s:VGroup width="468" height="100%" paddingLeft="5" paddingTop="8">
+							<s:Group styleName="priviewTitle" width="100%" height="15">
+								<s:Label left="30" styleName="previewTitleLabel" text="目标"/>
+								<s:Label left="180" styleName="previewTitleLabel" text="解释"/>
+								<s:Label left="335" styleName="previewTitleLabel" text="学习进度"/>
+							</s:Group>
+							<s:List id="previewList" width="100%" height="100%" change="itemChanged(event)" useHandCursor="true" borderVisible="false" styleName="previewList" allowMultipleSelection="false" selectedIndex="0" itemRendererFunction="setPreviewRenderer"/>
+						</s:VGroup>
+						<s:Group width="100%" height="100%">
+							<s:VGroup id="goal_preview" width="100%" horizontalAlign="center" top="30">
+								<s:Label id="previewGoal" paddingBottom="6" maxWidth="200" width="100%" textAlign="center" fontSize="20"/>
+								<s:Label id="extraData" paddingBottom="6" maxWidth="200" width="100%" textAlign="center" fontSize="16" visible="false" includeInLayout="false"/>
+								<s:BorderContainer width="100%" styleName="shortLine" height="1"/>
+								<s:Label id="previewResponse" paddingTop="12" maxWidth="200" width="100%" textAlign="center" fontSize="14"/>
+							</s:VGroup>
+							<s:Group height="200" width="100%" bottom="10">
+								<local:ImagePreviewer width="180" height="180" horizontalCenter="1" id="imagePreviewer" visible="false" backgroundColor="#FFFFFF" borderWeight="4"/>
+							</s:Group>
+						</s:Group>
+					</s:HGroup>
+					<s:BorderContainer height="32" styleName="messagePanel" borderVisible="false" width="100%">
+						<s:VGroup verticalAlign="middle" paddingTop="10" paddingBottom="10" paddingLeft="8">
+							<s:Label width="100%" id="helpText" styleName="messageText" text="以上是本课要学习的内容"/>
+						</s:VGroup>
+					</s:BorderContainer>
+				</s:VGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="subNav" width="100%" height="55" borderVisible="false" cornerRadius="8">
+				<s:HGroup id="sessionCountGroup" width="180" maxWidth="180" height="100%" verticalAlign="middle" paddingLeft="15">
+					<s:RadioButton id="countFive" color="#FFFFFF" width="50" styleName="commonRadioButton" fontSize="12" fontWeight="bold" label="5个" selected="true" value="5" groupName="itemsNum" buttonMode="true" useHandCursor="true"/>
+					<s:RadioButton styleName="commonRadioButton" width="50" id="countTen" color="#FFFFFF" fontSize="12" fontWeight="bold" label="10个" value="10" groupName="itemsNum" buttonMode="true" useHandCursor="true"/>
+				</s:HGroup>
+				<s:Button id="navNext" styleName="bigStudyButton" width="172" height="40" label="开始学习" buttonMode="true" useHandCursor="true" right="10" verticalCenter="1"/>
+			</s:BorderContainer>
+		</s:VGroup>
+	</s:HGroup>
+</s:NavigatorContent>

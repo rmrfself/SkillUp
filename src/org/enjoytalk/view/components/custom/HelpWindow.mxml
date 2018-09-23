@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="480" height="320">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import flash.net.*;
+
+			protected function image1_mouseDownHandler(event:MouseEvent):void
+			{
+				navigateToURL(new URLRequest('tencent://message/?uin=66031804&Site=f7tao.com&Menu=yes'), '_blank');
+			}
+
+			protected function image2_mouseDownHandler(event:MouseEvent):void
+			{
+				navigateToURL(new URLRequest('tencent://message/?uin=154245916&Site=f7tao.com&Menu=yes'), '_blank');
+			}
+
+			private function closeMe():void
+			{
+				dispatchEvent(new Event(ErrMessage.CLOSE_POPWIN, true));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer width="100%" height="100%" styleName="messageWindow">
+		<s:VGroup width="100%" height="100%" paddingTop="20" paddingBottom="20" paddingLeft="20" paddingRight="20" fontSize="14">
+			<s:RichText width="100%" text="欢迎使用SkillUp学习工具" fontSize="16" fontWeight="bold" paddingTop="10" paddingBottom="10"/>
+			<s:BorderContainer styleName="shortLine" height="1" width="100%"/>
+			<s:RichText width="100%" text="如果您在使用过程中遇到问题，请点击左侧“反馈”按钮，反馈信息给我们，我们会帮助您尽快解决问题。" paddingTop="10" paddingBottom="10"/>
+			<s:BorderContainer styleName="shortLine" height="1" width="100%"/>
+			<s:RichText width="100%" text="Email: enjoytalk@gmail.com" paddingTop="10" paddingBottom="10"/>
+			<s:BorderContainer styleName="shortLine" height="1" width="100%"/>
+			<s:RichText width="100%" text="或者给我们QQ上留言:" paddingTop="10" paddingBottom="15"/>
+			<s:HGroup width="100%">
+				<s:Image source="http://wpa.qq.com/pa?p=1:494857:7" toolTip="在线客服(一)" x="324" y="178" mouseDown="image1_mouseDownHandler(event)" buttonMode="true" useHandCursor="true"/>
+				<s:Image source="http://wpa.qq.com/pa?p=1:494857:7" toolTip="在线客服(二)" x="324" y="178" mouseDown="image2_mouseDownHandler(event)" buttonMode="true" useHandCursor="true"/>
+			</s:HGroup>
+		</s:VGroup>
+		<s:HGroup width="100%" horizontalAlign="center" paddingTop="15" height="100" verticalAlign="middle">
+			<s:Button id="closeButton" styleName="commonButton" width="90" height="30" click="closeMe()" buttonMode="true" useHandCursor="true" label="关闭" fontWeight="bold" left="155"/>
+		</s:HGroup>
+	</s:BorderContainer>
+</s:Group>

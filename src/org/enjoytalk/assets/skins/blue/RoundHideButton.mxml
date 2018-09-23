@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008" xmlns:lib="assets.graphics.*" xmlns:fc="http://ns.adobe.com/flashcatalyst/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Ellipse height="25" id="ellipse2" includeIn="up" width="25" x="0" y="0">
+		<s:fill>
+			<s:SolidColor color="#5380D0"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse alpha="0.1" height="12.553" id="ellipse1" includeIn="up" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Ellipse>
+	<fx:DesignLayer d:id="2" d:userLabel="Layer 1">
+		<s:Group id="group1" includeIn="up" x="5" y="2">
+			<s:Rect height="11" radiusX="1.36949" radiusY="1.36949" width="14" x="0" y="7">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Rect>
+			<s:Group x="1" y="0">
+				<s:Path data="M 2.135 7.107 C 2.147 4.359 4.379 2.134 7.13 2.134 C 9.882 2.134 12.114 4.359 12.126 7.107 L 14.261 7.107 C 14.249 3.181 11.061 0 7.13 0 C 3.2 0 0.012 3.181 0 7.107 L 2.135 7.107 Z" height="4.125" width="9.983" winding="nonZero" x="0.937" y="0.54">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Path>
+				<s:Rect height="1" width="2" x="1" y="6">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Rect>
+				<s:Rect height="1" width="1" x="10" y="6">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Rect>
+			</s:Group>
+		</s:Group>
+		<s:Ellipse height="25" id="ellipse0" includeIn="over" width="25" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#2B4381"/>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Ellipse>
+		<s:Ellipse alpha="0.1" height="12.553" id="ellipse3" includeIn="over" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Ellipse>
+		<s:Group id="group0" includeIn="over" x="5" y="2">
+			<s:Rect height="11" radiusX="1.36949" radiusY="1.36949" width="14" x="0" y="7">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Rect>
+			<s:Group x="1" y="0">
+				<s:Path data="M 2.135 7.107 C 2.147 4.359 4.379 2.134 7.13 2.134 C 9.882 2.134 12.114 4.359 12.126 7.107 L 14.261 7.107 C 14.249 3.181 11.061 0 7.13 0 C 3.2 0 0.012 3.181 0 7.107 L 2.135 7.107 Z" height="4.125" width="9.983" winding="nonZero" x="0.937" y="0.54">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Path>
+				<s:Rect height="1" width="2" x="1" y="6">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Rect>
+				<s:Rect height="1" width="1" x="10" y="6">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Rect>
+			</s:Group>
+		</s:Group>
+		<s:Ellipse height="25" id="ellipse4" includeIn="down" width="25" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#2B4381"/>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Ellipse>
+		<s:Ellipse alpha="0.1" height="12.553" id="ellipse5" includeIn="down" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Ellipse>
+		<s:Group id="group2" includeIn="down" x="5" y="2">
+			<s:Rect height="11" radiusX="1.36949" radiusY="1.36949" width="14" x="0" y="7">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Rect>
+			<s:Group x="1" y="0">
+				<s:Path data="M 2.135 7.107 C 2.147 4.359 4.379 2.134 7.13 2.134 C 9.882 2.134 12.114 4.359 12.126 7.107 L 14.261 7.107 C 14.249 3.181 11.061 0 7.13 0 C 3.2 0 0.012 3.181 0 7.107 L 2.135 7.107 Z" height="4.125" width="9.983" winding="nonZero" x="0.937" y="0.54">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Path>
+				<s:Rect height="1" width="2" x="1" y="6">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Rect>
+				<s:Rect height="1" width="1" x="10" y="6">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Rect>
+			</s:Group>
+		</s:Group>
+	</fx:DesignLayer>
+	<s:transitions>
+		<s:Transition fromState="down" toState="up" autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{ellipse2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse4}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse5}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+		<s:Transition fromState="up" toState="over" autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{ellipse2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

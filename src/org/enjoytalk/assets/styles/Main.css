@@ -1,0 +1,455 @@
+/* CSS file */
+/**
+  默认通用控件的样式
+*/
+Application{ 
+	backgroundColor:#f9f6d9;
+	backgroundGradientColors: #53AAF4, #F7F9FB;
+	background-image: Embed(source='/org/enjoytalk/assets/images/sky.jpg');
+	borderStyle: solid;
+	background-repeat:repeat;
+	fontSize: 12;
+	themeColor:#288bca;
+	color: #ffffff;
+	disabled-color: #656361;
+	modalTransparency:0.3;
+	modalTransparencyBlur:0;
+	modalTransparencyColor:#000000;
+	fontFamily: Arial, "_sans";
+}
+
+Text{
+	 color: #FFFFFF; 
+	 fontSize: 12;
+	 fontFamily: Arial;
+}
+
+RadioButton{
+	fillAlphas: 1.0, 1.0, 1.0, 1.0;
+	fillColors: #FFFCFC, #FFFCFC, #FFFCFC, #FFFCFC;
+	color: #102FAC; 
+	fontSize: 15;
+	fontWeight: bold; 
+	fontFamily: Arial;
+}
+
+Button{
+	borderColor: #FFFFFF;
+	cornerRadius: 6;
+	fontSize: 14;
+	fontWeight: bold;
+	color:#FFFFFF;
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+}
+
+Canvas{
+	backgroundAlpha: 1.0;
+}
+
+VBox{
+	
+}
+
+HBox{
+	
+}
+
+TextInput{
+	color: #000000;
+}
+
+RadioButton{
+	upIcon: Embed(skinClass="RadioUp");
+	overIcon: Embed(skinClass="RadioUp");
+	downIcon: Embed(skinClass="RadioUp");
+	selectedUpIcon: Embed(skinClass="RadioSelected");
+	selectedOverIcon: Embed(skinClass="RadioSelected");
+	selectedDownIcon: Embed(skinClass="RadioSelected");
+}
+
+.bigButton
+{
+	upSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_big.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	downSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_big.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	overSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_big.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+}
+
+.wStartButton{
+	upSkin:Embed(skinClass="ButtonBeginStudy");
+	downSkin:Embed(skinClass="ButtonBeginStudy");
+	overSkin:Embed(skinClass="ButtonBeginStudy");
+}
+
+.pCheckbox{
+	upSkin: Embed(skinClass="CheckBoxBlank");
+	downSkin: Embed(skinClass="CheckBoxBlank");
+	overSkin: Embed(skinClass="CheckBoxBlank");
+	selectedUpSkin: Embed(skinClass="CheckBoxChecked");
+	selectedOverSkin: Embed(skinClass="CheckBoxHover");
+	selectedDownSkin: Embed(skinClass="CheckBoxChecked");
+	highlightAlphas: 0, 0;
+	fillAlphas: 0, 0, 0, 0;
+	borderColor: #0067C1;
+}
+
+
+.smallButton
+{
+	upSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_smaller.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	downSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_smaller.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	overSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_smaller.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	disabledSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_grey.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	borderColor: #FFFFFF;
+	cornerRadius: 6;
+	fontSize: 14;
+	fontWeight: bold;
+	color:#FFFFFF;
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+}
+
+.innerButton{
+	skin: Embed(skinClass="InnerButton_upSkin");
+	downSkin: Embed(skinClass="InnerButton_overSkin");
+	overSkin: Embed(skinClass="InnerButton_overSkin");
+	selectedUpSkin: Embed(skinClass="InnerButton_overSkin");
+	cornerRadius: 4;
+	paddingTop:6;
+	paddingLeft:4;
+	paddingRight:4;
+	paddingBottom:2;
+}
+
+.staticButton{
+	upSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_deep.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	downSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_deep.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	overSkin:Embed(source='/org/enjoytalk/assets/images/buttons/button_deep.png', scaleGridLeft=5, scaleGridRight=6, scaleGridTop=11,scaleGridBottom=12);
+	borderColor: #FFFFFF;
+	cornerRadius: 6;
+	fontSize: 14;
+	fontWeight: bold;
+	color:#FFFFFF;
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+
+}
+
+.loadProgress{
+	trackSkin: Embed(skinClass='ResourceLoad_trackSkin');
+	barSkin: Embed(skinClass='ResourceLoad_barSkin');
+	maskSkin: Embed(skinClass='ResourceLoad_maskSkin');
+}
+
+/**
+	圆角
+*/
+
+.roundCorner{
+	borderStyle: solid;
+	borderThickness: 0;
+	cornerRadius: 8;
+}
+
+/**
+	结束
+**/
+
+.mainBody{
+	horizontalCenter:0; 
+	verticalCenter:5;
+	borderColor:#FFFFFF;
+	borderStyle: solid;
+	borderThickness: 0.2;
+	cornerRadius: 15;
+	fontSize:12;
+    paddingTop:1;
+	paddingLeft:13;
+	paddingRight:13;
+	paddingBottom:2;
+	backgroundAlpha:0.5;
+	backgroundColor:#93baf6; 
+}
+
+.title{
+	color: #CEF7FF;
+	fontSize: 30;
+	fontWeight: bold;
+	fontFamily: "verdana";
+}
+
+.gradientWithCorner{
+	border-style: solid ;
+    border-thickness: 1;
+    border-color: #12A6E9;
+    border-skin: ClassReference("org.enjoytalk.view.components.custom.GradientBorder");
+    fill-colors:  #2983C4 ,#28C0EF ;
+    corner-radius:10 ;
+    bottom-corner-radius:10;
+}
+
+.gradientBox{
+	border-style: solid ;
+    border-thickness: 0;
+    border-color: #12A6E9;
+    corner-radius:10;
+    border-skin: ClassReference("org.enjoytalk.view.components.custom.GradientBorder");
+    fill-colors:  #0061BF ,#00A0DA;
+    bottomCornerRadius:12 ;
+	paddingLeft: 10;
+	paddingRight: 10;
+	paddingTop: 6;
+	paddingBottom: 6;
+}
+
+.commonBoxWithoutBt{
+	border-style: solid ;
+    border-thickness: 0;
+	corner-radius:6;
+	border-skin: ClassReference("org.enjoytalk.view.components.custom.CustomBorder");
+	paddingLeft: 8;
+	paddingRight: 8;
+	paddingTop: 6;
+	paddingBottom:6;
+}
+
+.contentPanel{
+	backgroundColor:#1992d1;
+	border-style: solid ;
+    border-thickness: 0;
+	corner-radius:6;
+	paddingLeft: 8;
+	paddingRight: 8;
+	paddingTop: 8;
+	paddingBottom:8;
+}
+
+.sideBar{
+	backgroundColor:#1992d1;
+	border-style: solid ;
+    border-thickness: 0;
+	corner-radius:6;
+	paddingLeft: 8;
+	paddingRight: 8;
+	paddingTop: 6;
+	paddingBottom:6;
+}
+
+.note{
+	backgroundColor: #FFFFFF;
+	paddingTop: 2;
+	paddingBottom: 0;
+	paddingLeft: 8;
+	paddingRight:8 ;
+	corner-radius:6;
+	border-style: solid ;
+    border-thickness: 0;
+}
+
+.noteText{
+/*	color: #2D5176 ;*/
+	color: #336699 ;
+	fontSize: 20 ;
+	fontWeight:bold ;
+	fontFamily:华文楷体; 
+}
+
+.navArea{
+	backgroundColor: #FFFFFF;
+	backgroundAlpha: 0.2;
+	border-style: solid ;
+	border-thickness: 1;
+	border-color: #FFFFFF;
+	corner-radius:6;
+	paddingTop: 6;
+	paddingLeft: 12;
+	paddingRight:12;
+	paddingBottom:6 ;
+}
+
+
+/**
+	画面 预览 
+*/
+
+.statusBar{
+	backgroundColor: #0061BF;
+	paddingBottom: 8;
+	paddingLeft: 8;
+	paddingRight: 8;
+	paddingTop: 8;
+	borderStyle:solid;
+	borderThickness: 0;
+	cornerRadius:7;
+	color:#FFFFFF;
+}
+
+.studyPhase{
+	backgroundColor: #02A6FB;
+	paddingBottom: 1;
+	paddingTop: 1;
+	borderStyle:solid;
+	borderThickness: 0;
+	cornerRadius:4;
+	color:#FFFFFF;
+}
+
+
+.currentPhase{
+	backgroundColor: #FDCA25;
+	paddingBottom: 2;
+	paddingTop: 2;
+	borderStyle:solid;
+	borderThickness: 0;
+	cornerRadius:4;
+	color:#102FAC;
+}
+
+.pItemProgress{
+	trackSkin: Embed(skinClass='ProgressBar_trackSkin');
+	barSkin: Embed(skinClass='ProgressBar_barSkin');
+	maskSkin: Embed(skinClass='ProgressBar_barSkin');
+	labelWidth:0 ;
+}
+
+.textProgress {
+	fontSize: 12;
+}
+
+.pItemBoxTitle{
+	fontWeight:bold;
+	color:#BFD8EF;
+	fontSize: 12;
+}
+
+/*
+.labelKanJiFont{
+	fontFamily: ＭＳ Ｐゴシック;
+	fontSize: 18 ;
+}
+
+.labelResponseFont{
+	fontSize: 18 ;
+}
+*/
+
+/****************************************************************************************************************
+=========================== 画面 学习
+*****************************************************************************************************************
+*/
+.listProgress{
+	trackSkin: Embed(skinClass='ListProgressBar_trackSkin');
+	barSkin: Embed(skinClass='ListProgressBar_barSkin');
+	maskSkin: Embed(skinClass='ListProgressBar_barSkin');
+	color: #FFFFFF ;
+	fontWeight: normal ;
+}
+
+.indeterminateProgressSkin{
+	trackSkin: Embed(skinClass='ListProgressBar_trackSkin');
+	maskSkin: Embed(skinClass='ListProgressBar_barSkin');
+}
+
+.messageBoard{
+	backgroundColor: #CFE7FC ;
+	color: #336699;
+	alpha: 0.8;
+	fontWeight: bold ;
+	fontSize: 20 ;
+	fontFamily:华文楷体; 	
+	cornerRadius: 8;
+	paddingTop: 1;
+	paddingBottom: 0;
+	paddingLeft: 10;
+	borderStyle:solid;
+	borderThickness: 0;
+
+}
+
+.nounButton{
+	skin: Embed(skinClass="NounButton_upSkin");
+	downSkin: Embed(skinClass="NounButton_upSkin");
+	overSkin: Embed(skinClass="NounButton_upSkin");
+	selectedUpSkin: Embed(skinClass="NounButton_upSkin");
+	cornerRadius: 4;
+	paddingTop:6;
+	paddingLeft:4;
+	paddingRight:4;
+	paddingBottom:6;
+
+}
+
+.bigText{
+	fontSize:36;
+	color:#FFFFFF;
+}
+
+
+.infoText{
+	color:#000000 ;
+	fontSize:20;
+	fontWeight:bold;
+	paddingLeft:10;
+}
+
+.spacer{
+	background-image:Embed('org/enjoytalk/assets/images/line.png');
+}
+
+.selectionCanvas{
+	backgroundColor: #CFE7FC;
+	color:#3F6489;
+}
+
+.selectedCanvas{
+	backgroundColor: #97CBFF;
+	color:#3F6489;
+}
+
+.playButton
+{
+	upSkin:Embed(source='org/enjoytalk/assets/images/buttons/play_btn_1.png');
+	overSkin:Embed(source='org/enjoytalk/assets/images/buttons/play_btn_2.png');
+	downSkin:Embed(source='org/enjoytalk/assets/images/buttons/play_btn_3.png');
+}
+
+.stopButton
+{
+	upSkin:Embed(source='org/enjoytalk/assets/images/buttons/stop_1.png');
+	overSkin:Embed(source='org/enjoytalk/assets/images/buttons/stop_2.png');
+	downSkin:Embed(source='org/enjoytalk/assets/images/buttons/stop_3.png');
+}
+
+.studyButton{
+	upSkin:Embed(skinClass="ButtonStudy");
+	downSkin:Embed(skinClass="ButtonStudy");
+	overSkin:Embed(skinClass="ButtonStudy");
+}
+
+.jaText
+{
+	fontFamily: "MS PGothic" ;
+}
+
+.jaSelection{
+	fontFamily: "MS PGothic" ;
+	fontSize: 24;
+}
+
+.zhSelection{
+	fontFamily: Arial, "_sans";
+	fontSize: 14;
+	font-weight:bold;
+}
+
+.zhText{
+	
+}
+
+.enText{
+	
+}
+
+.text{
+	
+}

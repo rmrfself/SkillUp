@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008" xmlns:lib="assets.graphics.*" xmlns:fc="http://ns.adobe.com/flashcatalyst/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="44" id="rect1" includeIn="up" radiusX="2" width="146" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:RichText color="#FFFFFF"   fontSize="18" id="richtext1" includeIn="up" tabStops="S0" text="开 始" x="66" y="13">
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:RichText>
+	<fx:DesignLayer d:id="2" d:userLabel="隔离模式">
+		<s:Ellipse height="27" id="ellipse1" includeIn="up" width="27" x="12" y="10">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+		</s:Ellipse>
+		<s:Path data="M 0.04 23.27 L 0.04 0.03 20.17 11.65 Z " height="20.213" id="path1" includeIn="up" width="16.314" x="20" y="13">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Rect height="44" id="rect0" includeIn="over" radiusX="2" width="146" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+					<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="1" blurY="1" color="#FFFFFF" distance="4.0" hideObject="false" inner="true" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Rect>
+		<s:RichText color="#FFFFFF"   fontSize="18" id="richtext0" includeIn="over" tabStops="S0" text="开 始" x="66" y="13">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Ellipse height="27" id="ellipse0" includeIn="over" width="27" x="12" y="10">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+		</s:Ellipse>
+		<s:Path data="M 0.04 23.27 L 0.04 0.03 20.17 11.65 Z " height="20.213" id="path0" includeIn="over" width="16.314" x="20" y="13">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Rect height="44" id="rect2" includeIn="down" radiusX="2" width="146" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+					<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="1" blurY="1" color="#FFFFFF" distance="4.0" hideObject="false" inner="true" knockout="false" quality="2" strength="1"/>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Rect>
+		<s:RichText color="#FFFFFF"   fontSize="18" id="richtext2" includeIn="down" tabStops="S0" text="开 始" x="66" y="13">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Ellipse height="27" id="ellipse2" includeIn="down" width="27" x="12" y="10">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+		</s:Ellipse>
+		<s:Path data="M 0.04 23.27 L 0.04 0.03 20.17 11.65 Z " height="20.213" id="path2" includeIn="down" width="16.314" x="20" y="13">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Rect height="44" id="rect3" includeIn="disabled" radiusX="2" width="146" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="1" blurY="1" color="#FFFFFF" distance="4.0" hideObject="false" inner="true" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+			<s:fill>
+				<s:SolidColor color="#CCCCCC"/>
+			</s:fill>
+		</s:Rect>
+		<s:RichText color="#FFFFFF" fontSize="18" id="richtext3" includeIn="disabled" tabStops="S0" text="开 始" x="66" y="13">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Ellipse height="27" id="ellipse3" includeIn="disabled" width="27" x="12" y="10">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+		</s:Ellipse>
+		<s:Path data="M 0.04 23.27 L 0.04 0.03 20.17 11.65 Z " height="20.213" id="path3" includeIn="disabled" width="16.314" x="20" y="13">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+	</fx:DesignLayer>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="disabled" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{rect1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008" xmlns:lib="assets.graphics.*" xmlns:fc="http://ns.adobe.com/flashcatalyst/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Ellipse height="25" id="ellipse2" includeIn="up" width="25" x="0" y="0">
+		<s:fill>
+			<s:SolidColor color="#5380D0"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<fx:DesignLayer d:id="2" d:userLabel="隔离模式">
+		<s:Path data="M 12.893 28.164 C 5.784 28.164 0 22.379 0 15.27 C 0 8.75 4.789 3.323 11.199 2.491 L 11.199 0 L 11.836 0.365 L 18.484 4.203 L 19.118 4.57 L 18.487 4.937 L 11.836 8.781 L 11.199 9.146 L 11.199 6.938 C 7.28 7.728 4.381 11.226 4.381 15.27 C 4.381 19.963 8.199 23.78 12.893 23.78 C 17.586 23.78 21.404 19.963 21.404 15.27 C 21.404 13.874 21.055 12.486 20.392 11.257 L 20.195 10.894 L 20.553 10.69 L 23.626 8.929 L 24 8.715 L 24.208 9.092 C 25.241 10.977 25.785 13.114 25.785 15.27 C 25.785 22.379 20.003 28.164 12.893 28.164 Z" height="18.164" id="path1" includeIn="up" width="16.785" winding="nonZero" x="4.174" y="2.516">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Ellipse height="25" id="ellipse0" includeIn="over" width="25" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#2B4381"/>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Ellipse>
+		<s:Path data="M 12.893 28.164 C 5.784 28.164 0 22.379 0 15.27 C 0 8.75 4.789 3.323 11.199 2.491 L 11.199 0 L 11.836 0.365 L 18.484 4.203 L 19.118 4.57 L 18.487 4.937 L 11.836 8.781 L 11.199 9.146 L 11.199 6.938 C 7.28 7.728 4.381 11.226 4.381 15.27 C 4.381 19.963 8.199 23.78 12.893 23.78 C 17.586 23.78 21.404 19.963 21.404 15.27 C 21.404 13.874 21.055 12.486 20.392 11.257 L 20.195 10.894 L 20.553 10.69 L 23.626 8.929 L 24 8.715 L 24.208 9.092 C 25.241 10.977 25.785 13.114 25.785 15.27 C 25.785 22.379 20.003 28.164 12.893 28.164 Z" height="18.164" id="path0" includeIn="over" width="16.785" winding="nonZero" x="4.174" y="2.516">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Ellipse height="25" id="ellipse1" includeIn="down" width="25" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#2B4381"/>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Ellipse>
+		<s:Path data="M 12.893 28.164 C 5.784 28.164 0 22.379 0 15.27 C 0 8.75 4.789 3.323 11.199 2.491 L 11.199 0 L 11.836 0.365 L 18.484 4.203 L 19.118 4.57 L 18.487 4.937 L 11.836 8.781 L 11.199 9.146 L 11.199 6.938 C 7.28 7.728 4.381 11.226 4.381 15.27 C 4.381 19.963 8.199 23.78 12.893 23.78 C 17.586 23.78 21.404 19.963 21.404 15.27 C 21.404 13.874 21.055 12.486 20.392 11.257 L 20.195 10.894 L 20.553 10.69 L 23.626 8.929 L 24 8.715 L 24.208 9.092 C 25.241 10.977 25.785 13.114 25.785 15.27 C 25.785 22.379 20.003 28.164 12.893 28.164 Z" height="18.164" id="path2" includeIn="down" width="16.785" winding="nonZero" x="4.174" y="2.516">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Ellipse height="25" id="ellipse3" includeIn="disabled" width="25" x="0" y="0">
+			<s:fill>
+				<s:SolidColor color="#2B4381"/>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Ellipse>
+		<s:Path data="M 12.893 28.164 C 5.784 28.164 0 22.379 0 15.27 C 0 8.75 4.789 3.323 11.199 2.491 L 11.199 0 L 11.836 0.365 L 18.484 4.203 L 19.118 4.57 L 18.487 4.937 L 11.836 8.781 L 11.199 9.146 L 11.199 6.938 C 7.28 7.728 4.381 11.226 4.381 15.27 C 4.381 19.963 8.199 23.78 12.893 23.78 C 17.586 23.78 21.404 19.963 21.404 15.27 C 21.404 13.874 21.055 12.486 20.392 11.257 L 20.195 10.894 L 20.553 10.69 L 23.626 8.929 L 24 8.715 L 24.208 9.092 C 25.241 10.977 25.785 13.114 25.785 15.27 C 25.785 22.379 20.003 28.164 12.893 28.164 Z" height="18.164" id="path3" includeIn="disabled" width="16.785" winding="nonZero" x="4.174" y="2.516">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+	</fx:DesignLayer>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="disabled" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{path1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+		<s:Transition fromState="up" toState="over" autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{ellipse2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

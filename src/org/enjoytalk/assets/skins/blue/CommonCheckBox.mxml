@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009">
+	<fx:Metadata>[HostComponent("spark.components.CheckBox")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+		<s:State name="upAndSelected"/>
+		<s:State name="overAndSelected"/>
+		<s:State name="downAndSelected"/>
+		<s:State name="disabledAndSelected"/>
+	</s:states>
+	<s:Rect height="14" id="rect6" includeIn="downAndSelected" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#0065FF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#A5D5F2" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Rect height="14" id="rect5" includeIn="overAndSelected" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#009CFF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#4D86E8" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#A5D5F2" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Rect height="14" id="rect4" includeIn="upAndSelected" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#0065FF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#A5D5F2" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Rect height="14" id="rect1" includeIn="up" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#0065FF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#A5D5F2" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Rect height="14" id="rect3" includeIn="disabled" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#999999" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor color="#CCCCCC"/>
+		</s:fill>
+	</s:Rect>
+	<s:Path data="M 1 6 L 3 8 L 9 1" id="path1" includeIn="upAndSelected" x="4" y="3">
+		<s:stroke>
+			<s:SolidColorStroke caps="square" color="#3D5D92" weight="2"/>
+		</s:stroke>
+	</s:Path>
+	<s:Path data="M 1 6 L 3 8 L 9 1" id="path0" includeIn="overAndSelected" x="4" y="3">
+		<s:stroke>
+			<s:SolidColorStroke caps="square" color="#3D5D92" weight="2"/>
+		</s:stroke>
+	</s:Path>
+	<s:Path data="M 1 6 L 3 8 L 9 1" id="path2" includeIn="downAndSelected" x="4" y="3">
+		<s:stroke>
+			<s:SolidColorStroke caps="square" color="#3D5D92" weight="2"/>
+		</s:stroke>
+	</s:Path>
+	<s:Rect height="14" id="rect7" includeIn="disabledAndSelected" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#999999" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor color="#CCCCCC"/>
+		</s:fill>
+	</s:Rect>
+	<s:Path data="M 1 6 L 3 8 L 9 1" id="path3" includeIn="disabledAndSelected" x="4" y="3">
+		<s:stroke>
+			<s:SolidColorStroke caps="square" color="#999999" weight="2"/>
+		</s:stroke>
+	</s:Path>
+	<s:Rect height="14" id="rect0" includeIn="over" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#009CFF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#4D86E8" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#A5D5F2" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:Rect height="14" id="rect2" includeIn="down" radiusX="3" top="1" bottom="1" left="1" right="1">
+		<s:stroke>
+			<s:LinearGradientStroke caps="none" joints="miter" miterLimit="4" rotation="90" weight="2">
+				<s:GradientEntry alpha="1.0" color="#0065FF" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradientStroke>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#A5D5F2" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#5380D0" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="over" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{rect1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+		<s:Transition autoReverse="true" fromState="downAndSelected" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{rect6}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{path2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

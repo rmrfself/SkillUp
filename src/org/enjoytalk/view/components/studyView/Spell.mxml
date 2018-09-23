@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:local="org.enjoytalk.view.components.custom.*" xmlns:subPage="org.enjoytalk.view.components.studyView.spell.*" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" hide="cleanUp()" stateChangeComplete="stateChangeOver()">
+	<fx:Declarations>
+		<s:Move id="moveInEffect" xFrom="-200" xTo="10" duration="1000"/>
+	</fx:Declarations>
+	<fx:Script>
+		import flash.utils.Timer;
+
+		import mx.collections.ArrayCollection;
+		import mx.containers.BoxDirection;
+
+		import mx.controls.Text;
+		import mx.controls.TextInput;
+		import mx.core.FlexSprite;
+		import mx.core.UIComponent;
+		import mx.effects.easing.Bounce;
+		import mx.events.FlexEvent;
+		import mx.events.FocusRequestDirection;
+		import mx.managers.FocusManager;
+		import mx.managers.IFocusManagerComponent;
+		import mx.utils.ObjectUtil;
+		import mx.utils.StringUtil;
+
+		import org.enjoytalk.model.SequenceProxy;
+		import org.enjoytalk.model.vo.Item;
+		import org.enjoytalk.view.components.custom.SoundManager;
+		import org.enjoytalk.view.components.custom.LanguageCodeManager;
+		import org.enjoytalk.view.components.custom.SpellQuiz;
+		import org.enjoytalk.view.events.AnswerResult;
+		import org.enjoytalk.view.events.ToolsEvent;
+
+		public var item:Item;
+
+		private var focus_observer:flash.utils.Timer;
+		public var currentSpellHolder:SpellBox;
+
+
+		public function initSpell():void
+		{
+			this.currentState="spelling";
+			this.item=item;
+			spellQuiz.item=item;
+			spellQuiz.display();
+			setSpellFocus();
+			moveInEffect.play([moveTarget1]);
+		}
+
+
+		public function cleanUp():void
+		{
+			spellQuiz.cleanUp();
+		}
+
+		private function setSpellFocus():void
+		{
+			spellQuiz.setFocus();
+			stage.focus=spellQuiz;
+		}
+
+		private function enterHandler(event:ToolsEvent):void
+		{
+			var answer:Boolean=event.data as Boolean;
+			if (answer == true)
+			{
+				SoundManager.playEffectSound(SoundManager.SPELL_RIGHT);
+				dispatchEvent(new AnswerResult(AnswerResult.ANSWER_NAME, true));
+				currentState="right_spell";
+				moveInEffect.play([moveTarget3]);
+				rightSpellMark.skin.setCurrentState("normal");
+				spellRightMarkup.showRightAnswer(spellQuiz);
+				spellQuiz.cleanUp();
+
+			}
+			else
+			{
+				SoundManager.playEffectSound(SoundManager.SPELL_WRONG);
+				dispatchEvent(new AnswerResult(AnswerResult.ANSWER_NAME, false));
+				currentState="error_spell";
+				moveInEffect.play([moveTarget2]);
+				showSpellMark.skin.setCurrentState("normal");
+				spellResultMark.skin.setCurrentState("disabled");
+				spellErrMarkup.displayErrorInput(spellQuiz);
+				spellQuiz.cleanUp();
+			}
+			showCorrectData();
+		}
+
+		private function showCorrectData():void
+		{
+			var cueCode:String=LanguageCodeManager.getInstance().cueLanguageCode;
+			var responseCode:String=LanguageCodeManager.getInstance().responseLanguageCode;
+			if (currentState == "right_spell")
+			{
+				goalCharecter.includeInLayout=false;
+				if (item.hasCharacter())
+				{
+					goalCharecter.text=item.character;
+					goalCharecter.includeInLayout=true;
+					goalCharecter.setStyle("styleName", "spellCorrectText_" + cueCode);
+				}
+				goalResponse.text=item.response.text;
+				goalResponse.setStyle("styleName", "spellCorrectResponse_" + responseCode);
+			}
+			else
+			{
+
+				correctText.text=item.cue.text;
+				correctText.setStyle("styleName", "spellCorrectText_" + cueCode);
+				if (item.hasCharacter())
+				{
+					correctText.setStyle("styleName", "spellCorrectText_" + cueCode);
+					correctResponse.text=item.character;
+					correctResponse.visible=true;
+					correctResponse.includeInLayout=true;
+				}
+				else
+				{
+					correctResponse.visible=false;
+					correctResponse.includeInLayout=false;
+				}
+				correctResponse.text=item.response.text;
+				correctResponse.setStyle("styleName", "spellCorrectResponse_" + responseCode);
+			}
+			if (item.hasSound)
+			{
+				playSound(item.cue.sound);
+			}
+		}
+
+		private function stateChangeOver():void
+		{
+			if (this.currentState != "spelling")
+			{
+				spellQuiz.removeStageListener();
+			}
+		}
+
+		public function timeIsOver():void
+		{
+			spellQuiz.dispatchEvent(new ToolsEvent("enterHandler", false));
+		}
+
+		private function playSound(url:String):void
+		{
+			if (url != null)
+				SoundManager.playAudioByUrl(url);
+		}
+	</fx:Script>
+	<fx:Metadata>
+		[Event(name="answer", type="org.enjoytalk.view.events.AnswerResult")]
+	</fx:Metadata>
+	<s:states>
+		<s:State name="spelling"/>
+		<s:State name="error_spell"/>
+		<s:State name="right_spell"/>
+	</s:states>
+	<s:transitions>
+		<s:Transition toState="error_spell">
+			<s:Fade target="{spellHolder}" alphaFrom="1" alphaTo="0"/>
+		</s:Transition>
+		<s:Transition toState="spelling">
+			<s:Fade target="{spellHolder}" alphaFrom="0" alphaTo="1"/>
+		</s:Transition>
+		<s:Transition toState="right_spell">
+			<s:Fade target="{spellHolder}" alphaFrom="1" alphaTo="0"/>
+		</s:Transition>
+	</s:transitions>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" paddingLeft="6" paddingRight="6" horizontalCenter="" paddingTop="6" paddingBottom="6">
+		<s:HGroup width="100%" height="100%" includeIn="spelling" id="spellHolder" horizontalAlign="center" verticalAlign="middle" includeInLayout="{this.currentState == 'spelling'}">
+			<local:SpellBox id="spellQuiz" verticalCenter="1" enterHandler="enterHandler(event)" fontColor="0xFFFFFF" horizontalCenter="1"/>
+		</s:HGroup>
+		<s:VGroup width="100%" height="100%" includeIn="right_spell">
+			<s:VGroup width="100%" height="60" horizontalAlign="center" verticalAlign="middle">
+				<s:Label fontSize="14" fontWeight="bold" verticalCenter="1" text="拼写正确！"/>
+			</s:VGroup>
+			<s:BorderContainer width="100%" height="1" styleName="shortLine" borderVisible="false"/>
+			<s:VGroup width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="15">
+				<s:BorderContainer styleName="spellResultMark" id="rightSpellMark"/>
+				<s:Button horizontalCenter="1" styleName="smallSpeakerButton" width="22" height="22" buttonMode="true" useHandCursor="true"/>
+				<s:HGroup id="rightSpellHolder" height="40" width="100%" horizontalAlign="center" verticalAlign="middle">
+					<local:SpellBox id="spellRightMarkup" verticalCenter="1" horizontalCenter="1"/>
+				</s:HGroup>
+				<s:RichText id="goalCharecter" width="100%" fontSize="24" textAlign="center" includeInLayout="true"/>
+				<s:RichText id="goalResponse" width="100%" fontSize="24" horizontalCenter="1" paddingTop="15" textAlign="center"/>
+			</s:VGroup>
+		</s:VGroup>
+		<s:VGroup width="100%" height="100%" includeIn="error_spell">
+			<s:VGroup width="100%" height="60" horizontalAlign="center" verticalAlign="middle">
+				<s:Label fontSize="14" fontWeight="bold" verticalCenter="1" text="拼写错误，你还有学习这个单词的机会！"/>
+			</s:VGroup>
+			<s:BorderContainer width="100%" height="1" styleName="shortLine"/>
+			<s:HGroup width="100%" height="200" paddingTop="10" paddingBottom="20" paddingLeft="15" paddingRight="15" gap="10">
+				<s:BorderContainer styleName="spellResultMark" id="showSpellMark"/>
+				<s:Label fontSize="12" fontWeight="bold" text="正确拼写是:" paddingTop="10"/>
+				<s:HGroup width="80%" height="100%" gap="20" paddingTop="10">
+					<s:Button top="2" styleName="smallSpeakerButton" width="22" height="22" buttonMode="true" useHandCursor="true"/>
+					<s:VGroup width="100%" height="100%" gap="8">
+						<s:Label width="100%" id="correctText" fontSize="20"/>
+						<s:Label width="100%" id="correctCharecter" includeInLayout="false"/>
+						<s:Label width="100%" fontWeight="bold" id="correctResponse"/>
+					</s:VGroup>
+				</s:HGroup>
+			</s:HGroup>
+			<s:Group width="100%" height="100%">
+				<s:BorderContainer styleName="spellResultMark" id="spellResultMark" left="20"/>
+				<s:Label fontSize="12" fontWeight="bold" text="你输入了:" left="120" top="10"/>
+				<s:HGroup id="wrongSpellHolder" height="100%" width="100%" horizontalAlign="center" verticalAlign="middle">
+					<local:SpellBox id="spellErrMarkup" verticalCenter="1" horizontalCenter="1"/>
+				</s:HGroup>
+			</s:Group>
+		</s:VGroup>
+		<s:BorderContainer width="100%" height="32" cornerRadius="6" styleName="helpMessagePanel" borderVisible="false">
+			<s:BorderContainer id="messageMask" width="100%" height="100%"/>
+			<s:Group width="100%" height="100%" mask="{messageMask}">
+				<s:RichText id="moveTarget1" text='请在时间用完之前写出单词并按"回车"键确认.' x="-300" maskType="clip" styleName="helpMessage" y="8" includeIn="spelling"/>
+				<s:RichText id="moveTarget2" text='点 "重新学习" 按钮 重新学习一遍.' x="-300" maskType="clip" styleName="helpMessage" y="8" includeIn="error_spell"/>
+				<s:RichText id="moveTarget3" text='点 "下一个" 按钮 学习下一个单词.' x="-300" maskType="clip" styleName="helpMessage" y="8" includeIn="right_spell"/>
+			</s:Group>
+		</s:BorderContainer>
+	</s:VGroup>
+</s:NavigatorContent>

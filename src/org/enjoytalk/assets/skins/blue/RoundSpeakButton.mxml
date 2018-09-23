@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Metadata>
+		<![CDATA[
+		[HostComponent("spark.components.Button")]
+	]]>
+	</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Ellipse height="25" id="ellipse2" includeIn="up" width="25" x="0" y="1">
+		<s:fill>
+			<s:SolidColor color="#5380D0"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse alpha="0.1" height="12.553" id="ellipse1" includeIn="up" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Ellipse>
+	<s:Group id="group3" includeIn="up" x="4" y="4">
+		<s:Group x="0" y="0">
+			<s:Path data="M 0 7.486 L 2.543 7.486 L 2.543 0 L 0 0 L 0 7.486 Z M 27.215 0 L 27.215 7.486 L 29.852 7.486 L 29.852 0 L 27.215 0 Z" height="4.713" width="17.333" winding="nonZero" x="0.354" y="9.634">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+			<s:Path data="M 14.924 0 C 6.743 0 0.102 6.581 0 14.737 L 2.59 14.737 C 2.674 7.997 8.163 2.558 14.924 2.558 C 21.685 2.558 27.174 7.997 27.257 14.737 L 29.847 14.737 C 29.746 6.581 23.104 0 14.924 0 Z" height="9.279" width="17.33" winding="nonZero" x="0.341" y="0.365">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="3" x="3" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="2" x="13" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Ellipse height="25" id="ellipse0" includeIn="over" width="25" x="0" y="1">
+		<s:fill>
+			<s:SolidColor color="#2B4381"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse alpha="0.1" height="12.553" id="ellipse3" includeIn="over" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Ellipse>
+	<s:Group id="group0" includeIn="over" x="4" y="4">
+		<s:Group x="0" y="0">
+			<s:Path data="M 0 7.486 L 2.543 7.486 L 2.543 0 L 0 0 L 0 7.486 Z M 27.215 0 L 27.215 7.486 L 29.852 7.486 L 29.852 0 L 27.215 0 Z" height="4.713" width="17.333" winding="nonZero" x="0.354" y="9.634">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+			<s:Path data="M 14.924 0 C 6.743 0 0.102 6.581 0 14.737 L 2.59 14.737 C 2.674 7.997 8.163 2.558 14.924 2.558 C 21.685 2.558 27.174 7.997 27.257 14.737 L 29.847 14.737 C 29.746 6.581 23.104 0 14.924 0 Z" height="9.279" width="17.33" winding="nonZero" x="0.341" y="0.365">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="3" x="3" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="2" x="13" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Ellipse height="25" id="ellipse4" includeIn="down" width="25" x="0" y="1">
+		<s:fill>
+			<s:SolidColor color="#2B4381"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse alpha="0.1" height="12.553" id="ellipse5" includeIn="down" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Ellipse>
+	<s:Group id="group1" includeIn="down" x="4" y="4">
+		<s:Group x="0" y="0">
+			<s:Path data="M 0 7.486 L 2.543 7.486 L 2.543 0 L 0 0 L 0 7.486 Z M 27.215 0 L 27.215 7.486 L 29.852 7.486 L 29.852 0 L 27.215 0 Z" height="4.713" width="17.333" winding="nonZero" x="0.354" y="9.634">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+			<s:Path data="M 14.924 0 C 6.743 0 0.102 6.581 0 14.737 L 2.59 14.737 C 2.674 7.997 8.163 2.558 14.924 2.558 C 21.685 2.558 27.174 7.997 27.257 14.737 L 29.847 14.737 C 29.746 6.581 23.104 0 14.924 0 Z" height="9.279" width="17.33" winding="nonZero" x="0.341" y="0.365">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="3" x="3" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="2" x="13" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Ellipse height="25" id="ellipse6" includeIn="disabled" width="25" x="0" y="1">
+		<s:fill>
+			<s:SolidColor color="#2B4381"/>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="2" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:Ellipse alpha="0.1" height="12.553" id="ellipse7" includeIn="disabled" rotation="2.425" width="20.075" x="3.143" y="-0.02">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Ellipse>
+	<s:Group id="group2" includeIn="disabled" x="4" y="4">
+		<s:Group x="0" y="0">
+			<s:Path data="M 0 7.486 L 2.543 7.486 L 2.543 0 L 0 0 L 0 7.486 Z M 27.215 0 L 27.215 7.486 L 29.852 7.486 L 29.852 0 L 27.215 0 Z" height="4.713" width="17.333" winding="nonZero" x="0.354" y="9.634">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+			<s:Path data="M 14.924 0 C 6.743 0 0.102 6.581 0 14.737 L 2.59 14.737 C 2.674 7.997 8.163 2.558 14.924 2.558 C 21.685 2.558 27.174 7.997 27.257 14.737 L 29.847 14.737 C 29.746 6.581 23.104 0 14.924 0 Z" height="9.279" width="17.33" winding="nonZero" x="0.341" y="0.365">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF"/>
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="3" x="3" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:Rect height="7" radiusX="0.705521" radiusY="0.705521" width="2" x="13" y="10">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="disabled" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{ellipse2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse6}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse7}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+		<s:Transition fromState="up" toState="over" autoReverse="true">
+			<s:Parallel>
+				<s:Parallel target="{ellipse2}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{ellipse3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

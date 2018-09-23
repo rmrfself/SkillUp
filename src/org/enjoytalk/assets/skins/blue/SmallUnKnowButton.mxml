@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008" xmlns:lib="assets.graphics.*" xmlns:fc="http://ns.adobe.com/flashcatalyst/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="28" id="rect0" includeIn="up" radiusX="2" radiusY="2" width="118" x="1" y="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+		</s:stroke>
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<fx:DesignLayer d:id="2" d:userLabel="隔离模式">
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext1" includeIn="up" tabStops="S0 S50" text="不 知 道" x="39" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Group id="group1" includeIn="up" x="7" y="3">
+			<s:Group x="0" y="0">
+				<s:Group flm:knockout="false" x="0" y="0">
+					<s:Path data="M 14.02 3.611 C 19.759 3.611 24.428 8.281 24.428 14.021 C 24.428 19.76 19.759 24.43 14.02 24.43 C 8.28 24.43 3.611 19.76 3.611 14.021 C 3.611 8.281 8.28 3.611 14.02 3.611 Z M 0 14.021 C 0 21.751 6.29 28.041 14.02 28.041 C 21.75 28.041 28.04 21.751 28.04 14.021 C 28.04 6.289 21.75 0 14.02 0 C 6.29 0 0 6.289 0 14.021 Z" height="21.272" width="21.272" winding="nonZero" x="0.124" y="0.112">
+						<s:fill>
+							<s:SolidColor color="#FFFFFF"/>
+						</s:fill>
+					</s:Path>
+				</s:Group>
+			</s:Group>
+			<s:Group flm:knockout="false" x="5" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+			<s:Group flm:knockout="false" x="12" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+		</s:Group>
+		<s:Rect height="28" id="rect1" includeIn="over" radiusX="2" radiusY="2" width="118" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+					<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext0" includeIn="over" tabStops="S0 S50" text="不 知 道" x="39" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Group id="group0" includeIn="over" x="7" y="3">
+			<s:Group x="0" y="0">
+				<s:Group flm:knockout="false" x="0" y="0">
+					<s:Path data="M 14.02 3.611 C 19.759 3.611 24.428 8.281 24.428 14.021 C 24.428 19.76 19.759 24.43 14.02 24.43 C 8.28 24.43 3.611 19.76 3.611 14.021 C 3.611 8.281 8.28 3.611 14.02 3.611 Z M 0 14.021 C 0 21.751 6.29 28.041 14.02 28.041 C 21.75 28.041 28.04 21.751 28.04 14.021 C 28.04 6.289 21.75 0 14.02 0 C 6.29 0 0 6.289 0 14.021 Z" height="21.272" width="21.272" winding="nonZero" x="0.124" y="0.112">
+						<s:fill>
+							<s:SolidColor color="#FFFFFF"/>
+						</s:fill>
+					</s:Path>
+				</s:Group>
+			</s:Group>
+			<s:Group flm:knockout="false" x="5" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+			<s:Group flm:knockout="false" x="12" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+		</s:Group>
+		<s:Rect height="28" id="rect2" includeIn="down" radiusX="2" radiusY="2" width="118" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FF9300" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+					<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+			<s:filters>
+				<s:DropShadowFilter alpha="0.5" angle="45.0" blurX="4.0" blurY="4.0" color="0x000000" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:Rect>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext2" includeIn="down" tabStops="S0 S50" text="不 知 道" x="39" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Group id="group2" includeIn="down" x="7" y="3">
+			<s:Group x="0" y="0">
+				<s:Group flm:knockout="false" x="0" y="0">
+					<s:Path data="M 14.02 3.611 C 19.759 3.611 24.428 8.281 24.428 14.021 C 24.428 19.76 19.759 24.43 14.02 24.43 C 8.28 24.43 3.611 19.76 3.611 14.021 C 3.611 8.281 8.28 3.611 14.02 3.611 Z M 0 14.021 C 0 21.751 6.29 28.041 14.02 28.041 C 21.75 28.041 28.04 21.751 28.04 14.021 C 28.04 6.289 21.75 0 14.02 0 C 6.29 0 0 6.289 0 14.021 Z" height="21.272" width="21.272" winding="nonZero" x="0.124" y="0.112">
+						<s:fill>
+							<s:SolidColor color="#FFFFFF"/>
+						</s:fill>
+					</s:Path>
+				</s:Group>
+			</s:Group>
+			<s:Group flm:knockout="false" x="5" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+			<s:Group flm:knockout="false" x="12" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+		</s:Group>
+		<s:Rect height="28" id="rect3" includeIn="disabled" radiusX="2" radiusY="2" width="118" x="1" y="1">
+			<s:stroke>
+				<s:SolidColorStroke caps="none" color="#FFFFFF" joints="miter" miterLimit="4" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#CCCCCC"/>
+			</s:fill>
+		</s:Rect>
+		<s:RichText color="#FFFFFF" fontFamily="微软雅黑" fontSize="16" id="richtext3" includeIn="disabled" tabStops="S0 S50" text="不 知 道" x="39" y="7">
+			<s:filters>
+				<s:DropShadowFilter alpha="1" angle="270" blurX="0" blurY="0" color="#CCCCCC" distance="1" hideObject="false" inner="false" knockout="false" quality="2" strength="1"/>
+			</s:filters>
+		</s:RichText>
+		<s:Group id="group3" includeIn="disabled" x="7" y="3">
+			<s:Group x="0" y="0">
+				<s:Group flm:knockout="false" x="0" y="0">
+					<s:Path data="M 14.02 3.611 C 19.759 3.611 24.428 8.281 24.428 14.021 C 24.428 19.76 19.759 24.43 14.02 24.43 C 8.28 24.43 3.611 19.76 3.611 14.021 C 3.611 8.281 8.28 3.611 14.02 3.611 Z M 0 14.021 C 0 21.751 6.29 28.041 14.02 28.041 C 21.75 28.041 28.04 21.751 28.04 14.021 C 28.04 6.289 21.75 0 14.02 0 C 6.29 0 0 6.289 0 14.021 Z" height="21.272" width="21.272" winding="nonZero" x="0.124" y="0.112">
+						<s:fill>
+							<s:SolidColor color="#FFFFFF"/>
+						</s:fill>
+					</s:Path>
+				</s:Group>
+			</s:Group>
+			<s:Group flm:knockout="false" x="5" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+			<s:Group flm:knockout="false" x="12" y="7">
+				<s:Ellipse height="3" width="4" x="0" y="0">
+					<s:fill>
+						<s:SolidColor color="#FFFFFF"/>
+					</s:fill>
+				</s:Ellipse>
+			</s:Group>
+		</s:Group>
+	</fx:DesignLayer>
+	<s:transitions>
+		<s:Transition autoReverse="true" fromState="disabled" toState="up">
+			<s:Parallel>
+				<s:Parallel target="{richtext1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group1}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect0}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{richtext3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{group3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+				<s:Parallel target="{rect3}">
+					<s:Fade duration="0"/>
+				</s:Parallel>
+			</s:Parallel>
+		</s:Transition>
+	</s:transitions>
+</s:Skin>

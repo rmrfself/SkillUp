@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:local="*" verticalAlign="middle" gap="3">
+	<fx:Script>
+		<![CDATA[
+			public static var ONE_MINUTE:Number=60;
+			public static var ONE_HOUR:Number=3600;
+
+			private var second_a:MovieClip;
+			private var second_b:MovieClip;
+			private var minite_a:MovieClip;
+			private var minite_b:MovieClip;
+
+			public function initTimer(value:Number=0):void
+			{
+				second_a=s_a as MovieClip;
+				second_b=s_b as MovieClip;
+				minite_a=m_a as MovieClip;
+				minite_b=m_b as MovieClip;
+				minite_b.gotoAndStop(0);
+				minite_a.gotoAndStop(0);
+				second_b.gotoAndStop(0);
+				second_a.gotoAndStop(0);
+			}
+
+			public function setTimer(value:Number=0):void
+			{
+				var minutes_s:String="00";
+				var minute_f:Number=0;
+				var minute_s:Number=0;
+				var minutes:Number=0;
+				var seconds:Number=0;
+				var hours:Number=0;
+				if (value < ONE_HOUR)
+				{
+					// minute mode				
+					minutes=Math.floor(value / 60);
+					seconds=value % 60;
+					if (seconds < 10)
+					{
+						second_b.gotoAndStop(0);
+						if (seconds > 0)
+						{
+							second_a.gotoAndStop(seconds + 1);
+						}
+						else
+						{
+							second_a.gotoAndStop(seconds);
+						}
+					}
+					else
+					{
+						var s_secondes:String=seconds.toString();
+						var second_f:Number=Number(s_secondes.substr(0, 1));
+						second_b.gotoAndStop(second_f);
+						var second_s:Number=Number(s_secondes.substr(1, 1));
+						if (second_s > 0)
+						{
+							second_a.gotoAndStop(second_s + 1);
+						}
+						else
+						{
+							second_a.gotoAndStop(second_s);
+						}
+					}
+					if (minutes < 10)
+					{
+						minite_b.gotoAndStop(0);
+						if (minutes > 0)
+						{
+							minite_a.gotoAndStop(minutes + 1);
+						}
+						else
+						{
+							minite_a.gotoAndStop(minutes);
+						}
+					}
+					else
+					{
+						minutes_s=minutes.toString();
+						minute_f=Number(minutes_s.substr(0, 1));
+						minite_b.gotoAndStop(minute_f);
+						minute_s=Number(minutes_s.substr(1, 1));
+						if (minute_s > 0)
+						{
+							minite_a.gotoAndStop(minute_s + 1);
+						}
+						else
+						{
+							minite_a.gotoAndStop(minute_s);
+						}
+					}
+				}
+				else
+				{
+					// hour mode
+					hours=Math.floor(value / 3600);
+					minutes=Math.floor((value % 3600) / 60);
+					if (hours > 99 || hours == 0)
+					{
+						minite_b.gotoAndStop(0);
+						minite_a.gotoAndStop(0);
+					}
+					if (hours < 10)
+					{
+						minite_b.gotoAndStop(0);
+						if (hours > 0)
+						{
+							minite_a.gotoAndStop(hours + 1);
+						}
+						else
+						{
+							minite_a.gotoAndStop(hours);
+						}
+					}
+					else
+					{
+						var s_hours:String=hours.toString();
+						var hour_f:Number=Number(s_hours.substr(0, 1));
+						minite_b.gotoAndStop(hour_f);
+						var hour_s:Number=Number(s_hours.substr(1, 1));
+						if (hour_s > 0)
+						{
+							minite_b.gotoAndStop(hour_s + 1);
+						}
+						else
+						{
+							minite_b.gotoAndStop(hour_s);
+						}
+					}
+					if (minutes < 10)
+					{
+						minite_b.gotoAndStop(0);
+						minite_a.gotoAndStop(minutes);
+					}
+					else
+					{
+						minutes_s=minutes.toString();
+						minute_f=Number(minutes_s.substr(0, 1));
+						minite_b.gotoAndStop(minute_f);
+						minute_s=Number(minutes_s.substr(1, 1));
+						if (second_s > 0)
+						{
+							minite_a.gotoAndStop(second_s + 1);
+						}
+						else
+						{
+							minite_a.gotoAndStop(second_s);
+						}
+					}
+				}
+			}
+
+			public function restTimer():void
+			{
+				minite_b.gotoAndStop(0);
+				minite_a.gotoAndStop(0);
+				second_b.gotoAndStop(0);
+				second_a.gotoAndStop(0);
+			}
+		]]>
+	</fx:Script>
+	<local:STimer id="m_b" width="14" height="18"/>
+	<local:STimer id="m_a" width="14" height="18"/>
+	<mx:Image height="12" source="@Embed('org/enjoytalk/assets/images/colon.png')" alpha="0.5"/>
+	<local:STimer id="s_b" width="14" height="18"/>
+	<local:STimer id="s_a" width="14" height="18"/>
+</s:HGroup>

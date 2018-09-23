@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<s:HGroup width="100%" height="100%" verticalAlign="middle" paddingLeft="6" paddingRight="4" paddingTop="8" buttonMode="true" useHandCursor="true">
+		<s:CheckBox selected="true" styleName="skipCheckBox" buttonMode="true" useHandCursor="true"/>
+		<s:Label id="goalLabel" width="140" fontFamily="MS PGothic" fontSize="18" maxWidth="140" styleName="goalLabel" text="{data.text}"/>
+		<s:Label id="responseLabel" width="156" maxWidth="156" text="{data.response}" styleName="responseLabel"/>
+		<mx:Label id="progressLabel" width="30" fontSize="11" maxWidth="28" styleName="progressLabel" text="{data.progress}%"/>
+		<mx:ProgressBar width="38" horizontalGap="0" labelWidth="0" label="" labelPlacement="right" maximum="100" mode="manual" styleName="pItemProgress" creationComplete="init(event)">
+			<fx:Script>
+				<![CDATA[
+					private function init(evt:Event):void
+					{
+						ProgressBar(evt.target).setProgress(data.progress, 100);
+					}
+				]]>
+			</fx:Script>
+		</mx:ProgressBar>
+	</s:HGroup>
+</s:ItemRenderer>
+

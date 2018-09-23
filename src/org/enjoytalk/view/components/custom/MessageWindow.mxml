@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="240">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			public function setMessage(str:String, buttonLabel:String=null):void
+			{
+				errMessage.text=str;
+				if (buttonLabel != null)
+				{
+					closeButton.label=buttonLabel;
+				}
+			}
+
+			private function closeMe():void
+			{
+				dispatchEvent(new Event(ErrMessage.CLOSE_POPWIN));
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:BorderContainer width="100%" height="100%" styleName="messageWindow">
+		<s:RichText id="errMessage" width="100%" textAlign="center"/>
+		<s:HGroup width="100%" horizontalAlign="center" paddingTop="15">
+			<s:Button id="closeButton" styleName="commonButton" width="90" height="30" click="closeMe()" buttonMode="true" useHandCursor="true" label="关闭" fontWeight="bold" left="155"/>
+		</s:HGroup>
+	</s:BorderContainer>
+</s:Group>

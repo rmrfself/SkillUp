@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:local="org.enjoytalk.view.components.custom.*" show="initSelections()">
+	<fx:Metadata>
+		[Event(name="answerResultHandler", type="org.enjoytalk.view.events.AnswerResult")]
+	</fx:Metadata>
+	<fx:Declarations>
+		<s:Move id="moveIn" duration="1000" xFrom="-200" xTo="10"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.collections.ItemResponder;
+			 
+			import mx.core.UIComponent;
+			import mx.effects.easing.Bounce;
+			import mx.events.CollectionEvent;
+			import mx.events.FlexEvent;
+			import mx.utils.ObjectUtil;
+
+			import org.enjoytalk.model.vo.Selection;
+			import org.enjoytalk.model.vo.StudyParameter;
+			import org.enjoytalk.view.components.custom.SelectionRenderer;
+			import org.enjoytalk.view.components.custom.SoundManager;
+			import org.enjoytalk.view.events.AnswerResult;
+
+			import spark.components.IItemRenderer;
+
+			private var distractors:ArrayCollection;
+
+			private var _studyParameter:StudyParameter;
+
+			public function initSelections():void
+			{
+				answerBox.addEventListener("selectedOver", selectedOver);
+				moveTarget1.visible=true;
+				moveTarget2.visible=false;
+				moveTarget3.visible=false;
+				moveIn.play([moveTarget1]);
+				if (distractors != null && distractors.length > 0)
+				{
+					answerBox.dataProvider=distractors;
+					resetColumns();
+				}
+			}
+
+			public function setContent(dataProvider:ArrayCollection, param:StudyParameter):void
+			{
+				this._studyParameter=param;
+				this.distractors=dataProvider;
+
+			}
+
+			private function selectedOver(event:AnswerResult):void
+			{
+				var result:Boolean=event.data;
+				this.dispatchEvent(new AnswerResult("answerResultHandler", result));
+				if (answerBox && answerBox.dataGroup)
+				{
+					var i:int, numItems:int=answerBox.dataGroup.numElements;
+					for (i=0; i < numItems; i++)
+					{
+						var itemRendererItem:SelectionRenderer=answerBox.dataGroup.getElementAt(i) as SelectionRenderer;
+						itemRendererItem.showHiddenAnswer();
+					}
+				}
+				moveTarget1.visible=false;
+				if (result)
+				{
+					SoundManager.playEffectSound(SoundManager.ANSWER_RIGHT);
+					moveTarget3.visible=true;
+					moveIn.play([moveTarget3]);
+				}
+				else
+				{
+					SoundManager.playEffectSound(SoundManager.ANSWER_WRONG);
+					moveTarget2.visible=true;
+					moveIn.play([moveTarget2]);
+				}
+			}
+
+			private function dataChanged(event:CollectionEvent):void
+			{
+				resetColumns();
+			}
+
+			public function resetColumns():void
+			{
+				if (distractors != null && distractors.length > 0)
+				{
+					if (distractors.length > 5)
+					{
+						selectionLayout.requestedColumnCount=2;
+						selectionLayout.columnWidth=341;
+					}
+					else
+					{
+						selectionLayout.requestedColumnCount=1;
+						selectionLayout.columnWidth=686;
+					}
+					if (answerBox && answerBox.dataGroup)
+					{
+						var i:int, numItems:int=answerBox.dataGroup.numElements;
+						for (i=0; i < numItems; i++)
+						{
+							var itemRendererItem:SelectionRenderer=answerBox.dataGroup.getChildAt(i) as SelectionRenderer;
+							if (itemRendererItem != null)
+							{
+								itemRendererItem.resetContentHolder();
+							}
+						}
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:VGroup width="100%" height="100%" horizontalAlign="center" paddingLeft="6" paddingRight="6" horizontalCenter="" paddingTop="6" paddingBottom="6">
+		<s:List id="answerBox" width="100%" height="100%" useVirtualLayout="false" includeInLayout="true" autoLayout="true" contentBackgroundAlpha="0" borderVisible="false" itemRenderer="org.enjoytalk.view.components.custom.SelectionRenderer" horizontalCenter="1" verticalCenter="1" verticalScrollPolicy="off" horizontalScrollPolicy="off" buttonMode="true" useHandCursor="true">
+			<s:layout>
+				<s:TileLayout id="selectionLayout" horizontalGap="2" verticalGap="2" horizontalAlign="justify" verticalAlign="middle" rowHeight="86" requestedRowCount="5" requestedColumnCount="1" columnWidth="686"/>
+			</s:layout>
+		</s:List>
+		<s:BorderContainer width="100%" height="30" cornerRadius="6" styleName="helpMessagePanel" borderVisible="false">
+			<s:BorderContainer id="messageMask" width="100%" height="100%"/>
+			<s:Group width="100%" height="100%" mask="{messageMask}">
+				<s:RichText id="moveTarget1" text="请在时间用完之前选择正确的答案." x="-300" maskType="clip" styleName="helpMessage" y="8"/>
+				<s:RichText id="moveTarget2" text='点 "重新学习" 按钮 重新学习一遍.' x="-300" maskType="clip" styleName="helpMessage" y="8"/>
+				<s:RichText id="moveTarget3" text='点 "下一个" 按钮 学习下一个单词.' x="-300" maskType="clip" styleName="helpMessage" y="8"/>
+			</s:Group>
+		</s:BorderContainer>
+	</s:VGroup>
+</s:NavigatorContent>

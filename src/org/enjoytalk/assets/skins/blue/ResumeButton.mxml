@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Rect height="29" id="rect1" radiusX="4" width="112" x="0.5" x.disabled="1" x.down="1" x.over="1" x.up="1" y="0.5" y.disabled="1" y.down="1" y.over="1" y.up="1">
+		<s:stroke>
+			<s:SolidColorStroke caps="none" color="#FFFFFF" color.up="#FF9300" joints="miter" miterLimit="4" weight="1" weight.disabled="2" weight.down="2" weight.over="2" weight.up="2"/>
+		</s:stroke>
+		<s:fill.up>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill.up>
+		<s:fill.down>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill.down>
+		<s:fill.over>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#FFCB00" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#FF9300" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill.over>
+		<s:fill.disabled>
+			<s:SolidColor color="#CCCCCC"/>
+		</s:fill.disabled>
+	</s:Rect>
+	<s:RichText id="labelDisplay" buttonMode="true" color="#FFFFFF" fontSize="14" fontWeight="bold" tabStops="S0" width="100%" height="100%" textAlign="center" horizontalCenter="1" verticalAlign="middle"/>
+</s:Skin>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox width="300" height="150" horizontalAlign="center" paddingBottom="6" paddingLeft="6" paddingRight="6" paddingTop="6" verticalAlign="middle" xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:VBox width="100%" height="100%" verticalAlign="middle" styleName="contentPanel">
+		<mx:ProgressBar width="70%" height="80%" trackHeight="16" direction="left" indeterminate="true" label="正在保存课程进度" labelPlacement="bottom" mode="event" styleName="indeterminateProgressSkin"/>
+	</mx:VBox>
+</mx:VBox>

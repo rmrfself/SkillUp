@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:NavigatorContent xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:local="org.enjoytalk.view.components.custom.*" xmlns:subApp="org.enjoytalk.view.components.studyView.*" show="initApp()">
+	<fx:Script>
+		<![CDATA[
+			import flash.utils.Timer;
+
+			import mx.collections.ArrayCollection;
+			import mx.collections.Sort;
+			import mx.collections.SortField;
+
+			import mx.events.FlexEvent;
+			import mx.events.ModuleEvent;
+			import mx.managers.PopUpManager;
+
+			import org.enjoytalk.model.vo.Course;
+			import org.enjoytalk.model.vo.Item;
+			import org.enjoytalk.model.vo.User;
+			import org.enjoytalk.view.components.custom.SoundManager;
+			import org.enjoytalk.view.events.AnswerResult;
+
+			public static const START_CREATE:String="startCreate";
+			public static const INIT_COMPLETE:String="initComplete";
+			public static const SPELL_RESULT_RIGHT:String="spellResultRight";
+			public static const SPELL_RESULT_WRONG:String="spellResultWrong";
+			public static const SOUND_STOP:String="soundStop";
+			public static const HEARTBEAT:String="heartBeat";
+
+			public var timerOver:Boolean=false;
+
+			public function initApp():void
+			{
+				dispatchEvent(new Event(INIT_COMPLETE));
+			}
+
+			/**
+			* question answer handler
+			* 1. mark up the right answer
+			* 2. stop the current question timer
+			* 3. update answer session
+			*
+			* **/
+			public function answerResultHandler(event:AnswerResult):void
+			{
+				timerOver=false;
+				if (event.data)
+				{
+					dispatchEvent(new Event(AnswerResult.ANSWER_RIGHT));
+				}
+				else
+				{
+					dispatchEvent(new Event(AnswerResult.ANSWER_WRONG));
+				}
+				quizTimerBar.resizeEffect.stop();
+			}
+
+			/**
+			* this is callback-function from timer or spell-timer
+			* when timer is auto stop , this funtion is called automically.
+			*
+			* **/
+			public function timeIsOver():void
+			{
+				if (this.currentState == "multi_choices")
+				{
+					this.mc_quiz.answerBox.dispatchEvent(new AnswerResult("selectedOver", false));
+					dispatchEvent(new Event(AnswerResult.ANSWER_WRONG));
+				}
+				if (this.currentState == "spell")
+				{
+					this.spell.timeIsOver();
+					dispatchEvent(new Event(AnswerResult.ANSWER_WRONG));
+				}
+			}
+
+			/***
+			* this function is the session life counter . by this function ,we can control the session life circle;
+			*
+			* **/
+			private function heartBeatHandler(event:Event):void
+			{
+				this.dispatchEvent(new Event(HEARTBEAT));
+			}
+
+			private function startTimerBar():void
+			{
+				quizTimerBar.play();
+			}
+
+
+			public function pauseQuizTimerBar():void
+			{
+				if (currentState == "multi_choices" || currentState == "spell")
+				{
+					if (quizTimerBar.visible && quizTimerBar.resizeEffect.isPlaying)
+					{
+						quizTimerBar.resizeEffect.pause();
+					}
+				}
+			}
+
+			public function resumeQuizTimerBar():void
+			{
+				if (currentState == "multi_choices" || currentState == "spell")
+				{
+					if (quizTimerBar.visible && quizTimerBar.resizeEffect.isPlaying)
+					{
+						quizTimerBar.resizeEffect.resume();
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="review" stateGroups="normal"/>
+		<s:State name="recall" stateGroups="normal"/>
+		<s:State name="multi_choices" stateGroups="normal" enterState="startTimerBar()"/>
+		<s:State name="answer_right" stateGroups="normal"/>
+		<s:State name="answer_wrong" stateGroups="normal"/>
+		<s:State name="spell" stateGroups="normal" enterState="startTimerBar()"/>
+		<s:State name="completed" stateGroups="normal"/>
+	</s:states>
+	<s:HGroup width="100%" height="100%" gap="6" includeInLayout="true">
+		<s:VGroup width="174" height="100%">
+			<s:BorderContainer styleName="sidePanel" width="100%" height="30">
+				<s:HGroup paddingTop="6" paddingBottom="6" paddingLeft="6" paddingRight="6" width="100%" height="100%" verticalAlign="middle">
+					<s:Label styleName="welcomeMessage" text="欢迎使用SkillUp学习工具" width="100%" textAlign="center" verticalAlign="middle" verticalCenter="1"/>
+				</s:HGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="50">
+				<s:HGroup paddingTop="6" paddingBottom="6" paddingLeft="6" paddingRight="6" width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+					<mx:Label text="学习时间:"/>
+					<local:GlobalTimer id="globalTimer"/>
+				</s:HGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="175" height="104">
+				<s:Group id="phaseBar" width="100%" height="100%">
+					<s:Label width="100%" text="当前所在位置:" styleName="sideTitle" left="8" top="8"/>
+					<s:BorderContainer styleName="studyPhase" width="110" height="96" id="studyPhase" left="15" top="30" alpha="0.8"/>
+				</s:Group>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="60">
+				<s:VGroup width="100%" height="100%" paddingTop="10" paddingBottom="6" paddingLeft="8" paddingRight="8" gap="10">
+					<s:Label color="0xFFFFFF" fontSize="12" textAlign="left" text="课程进度 {Math.floor(listProgressBar.percentComplete)}%"/>
+					<s:Group width="100%" height="30">
+						<s:Label color="0xFFFFFF" fontSize="12" text="开始" top="6"/>
+						<mx:ProgressBar id="listProgressBar" width="90" horizontalGap="0" labelWidth="0" height="15" label="" labelPlacement="right" maximum="100" minimum="0" mode="manual" styleName="listProgressBar" left="32" top="0"/>
+						<s:Label color="0xFFFFFF" fontSize="12" paddingLeft="3" text="结束" right="0" top="6"/>
+					</s:Group>
+				</s:VGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="100">
+				<s:VGroup width="100%" horizontalAlign="center" paddingBottom="6" paddingLeft="6" paddingRight="6" paddingTop="10" gap="6">
+					<s:Label width="100%" text="单词进度"/>
+					<local:ItemsGrpManager id="itemsGrpManager" width="100%" height="60"/>
+				</s:VGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="sidePanel" width="100%" height="50">
+				<s:VGroup width="100%" height="60" paddingBottom="6" paddingLeft="6" paddingRight="6" paddingTop="6" gap="2" styleName="statusBar">
+					<s:Label width="100%" text="当前学习模式"/>
+					<mx:Text id="studyMode" color="#E3E36D" fontSize="12"/>
+				</s:VGroup>
+			</s:BorderContainer>
+		</s:VGroup>
+		<s:VGroup width="700" height="100%">
+			<s:BorderContainer width="700" height="100%" styleName="contentPanel" borderVisible="false">
+				<s:VGroup width="100%" height="100%">
+					<mx:ViewStack id="studyViewstack" width="100%" height="100%">
+						<subApp:Study id="study"/>
+						<subApp:Recall id="recall"/>
+						<subApp:Mcquiz id="mc_quiz" answerResultHandler="answerResultHandler(event)"/>
+						<subApp:Spell id="spell" answer="answerResultHandler(event)"/>
+						<subApp:Completed id="completed"/>
+					</mx:ViewStack>
+				</s:VGroup>
+			</s:BorderContainer>
+			<s:BorderContainer styleName="subNav" width="100%" height="45" borderVisible="false" cornerRadius="8">
+				<s:Button label="返回" id="returnHomeButton" styleName="returnHomeButton" buttonMode="true" useHandCursor="true" left="10" top="8" width="86" height="28" excludeFrom="completed"/>
+				<s:HGroup width="100%" height="100%" horizontalAlign="right" verticalAlign="middle">
+					<s:Button label="下一个" id="navStudyNext" width="130" height="30" styleName="nextButton" buttonMode="true" useHandCursor="true" includeIn="review,answer_right" verticalCenter="1"/>
+					<s:Button label="不知道" id="navStudyUnknow" width="130" height="30" buttonMode="true" useHandCursor="true" styleName="unKnowButton" includeIn="recall" verticalCenter="1"/>
+					<s:Button label="知道" id="navStudyKnow" width="130" height="30" buttonMode="true" styleName="knowButton" useHandCursor="true" includeIn="recall" verticalCenter="1"/>
+					<s:Button label="重新学习" id="navRestudy" width="130" height="30" buttonMode="true" useHandCursor="true" styleName="reStudyButton" includeIn="answer_wrong" verticalCenter="1"/>
+				</s:HGroup>
+				<s:Button label="完成" id="comletedButton" width="120" height="30" buttonMode="true" useHandCursor="true" styleName="commonButton" includeIn="completed" verticalCenter="1" top="10" right="10"/>
+				<local:TimerBar width="310" height="29" includeIn="multi_choices,spell" horizontalCenter="1" verticalCenter="1" id="quizTimerBar" timeOver="timeIsOver()"/>
+			</s:BorderContainer>
+		</s:VGroup>
+	</s:HGroup>
+</s:NavigatorContent>

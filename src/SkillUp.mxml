@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:page="org.enjoytalk.view.components.*" width="100%" height="100%" styleName="skillupApp" creationComplete="initApp()" preloader="org.enjoytalk.view.components.preload.Preloader" backgroundColor="#999999">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import com.flashdynamix.utils.SWFProfiler;
+
+			import flash.events.MouseEvent;
+
+			import mx.core.FlexGlobals;
+			import mx.managers.PopUpManager;
+			import mx.rpc.events.FaultEvent;
+
+			import org.enjoytalk.ApplicationFacade;
+			import org.enjoytalk.model.CourseProxy;
+			import org.enjoytalk.model.UserProxy;
+			import org.enjoytalk.model.vo.ConstVar;
+			import org.enjoytalk.model.vo.User;
+			import org.enjoytalk.view.components.LoaderView;
+			import org.enjoytalk.view.components.custom.AppConstants;
+			import org.enjoytalk.view.components.custom.AppTimerManager;
+			import org.enjoytalk.view.components.custom.ErrMessage;
+			import org.enjoytalk.view.components.custom.GlobalUtil;
+			import org.enjoytalk.view.components.custom.HelpWindow;
+			import org.enjoytalk.view.components.custom.SoundManager;
+
+			private var helpWindow:HelpWindow;
+
+			private var facade:ApplicationFacade=ApplicationFacade.getInstance();
+
+			private var courseProxy:CourseProxy;
+
+			private var userProxy:UserProxy;
+
+			public var loader:LoaderView;
+
+			public var soundManager:SoundManager;
+
+			public function initApp():void
+			{
+				loader=new LoaderView();
+				loader.name="loader";
+				loader.addEventListener(LoaderView.DATA_LOAD_COMPLETED, dataLoadCompleted);
+				resLoader.addElementAt(loader, 0);
+				facade.startup(this);
+				GlobalUtil.extendEnvironment();
+			}
+
+			private function dataLoadCompleted(event:Event):void
+			{
+				setAppBackgroundImage(loader);
+				setSoundEffect(loader);
+				resLoader.removeElement(loader);
+				resLoader.visible=false;
+				appWrapper.visible=true;
+				loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
+				userProxy=UserProxy(facade.retrieveProxy(UserProxy.NAME));
+				if (userProxy.isLoggedIn())
+				{
+					facade.sendNotification(ApplicationFacade.HOME_SHOW);
+				}
+				SoundManager.playEffectSound(SoundManager.LOADCOMPLETE);
+			}
+
+			private function setAppBackgroundImage(loader:LoaderView):void
+			{
+				try
+				{
+					wrapper.setStyle("backgroundImage", loader.imageLoader.content);
+				}
+				catch (e:Error)
+				{
+					wrapper.setStyle("backgroundColor", "#999999");
+				}
+			}
+
+			private function setSoundEffect(loader:LoaderView):void
+			{
+				SoundManager.data=loader.soundEffectLoader.content["soundHolder"];
+			}
+
+			public function showDebugInfo():void
+			{
+				SWFProfiler.init(stage, this);
+			}
+
+			private function uncaughtErrorHandler(event:UncaughtErrorEvent):void
+			{
+				if (event.error is Error)
+				{
+					var error:Error=event.error as Error;
+					var msg:String="Uncaught Error: " + error.errorID + ", " + error.name + ", " + error.message + "\n";
+					msg=msg + error.getStackTrace();
+					appMessage.text=msg;
+				}
+				else if (event.error is ErrorEvent)
+				{
+					var errorEvent:ErrorEvent=event.error as ErrorEvent;
+					msg="Uncaught ErrorEvent: " + errorEvent.text + "\n";
+					msg=msg + errorEvent.currentTarget.toString();
+					appMessage.text=msg;
+				}
+				else
+				{
+				}
+			}
+
+			private function pauseApp(event:Event):void
+			{
+				facade.sendNotification(ApplicationFacade.APP_PAUSE_STATE);
+			}
+
+			private function feedbackHandler():void
+			{
+				var feedbackUrl:String="http://study.f7tao.com/feedback";
+				var urlRequest:URLRequest=new URLRequest(feedbackUrl);
+				navigateToURL(urlRequest);
+			}
+
+			private function quitApp():void
+			{
+			}
+
+			private function showHelp():void
+			{
+				var appTimerManager:AppTimerManager=AppTimerManager.getInstance();
+				appTimerManager.pauseTimer();
+				helpWindow=HelpWindow(PopUpManager.createPopUp(this, HelpWindow, true));
+				helpWindow.addEventListener(ErrMessage.CLOSE_POPWIN, closeHelpWindow);
+				PopUpManager.centerPopUp(helpWindow);
+			}
+
+			private function closeHelpWindow(event:Event):void
+			{
+				PopUpManager.removePopUp(helpWindow);
+				var appTimerManager:AppTimerManager=AppTimerManager.getInstance();
+				appTimerManager.resumeTimer();
+			}
+		]]>
+	</fx:Script>
+	<s:BorderContainer id="wrapper" width="100%" height="100%" backgroundColor="#999999">
+		<s:VGroup width="100%" height="100%" id="resLoader" horizontalAlign="center" verticalAlign="middle"/>
+		<s:VGroup id="appWrapper" styleName="appWrapper" width="900" height="650" horizontalCenter="1" verticalCenter="1" visible="false">
+			<s:Label id="buildVersion" width="100%" fontSize="12" textAlign="right" text="编译版本 115"/>
+			<s:BorderContainer id="mainBody" width="900" height="600" borderAlpha="0.2">
+				<s:VGroup width="100%" height="100%" styleName="innerBody" paddingTop="6" paddingBottom="8" paddingLeft="8" paddingRight="6">
+					<s:Group id="appNav" width="100%" height="38">
+						<s:SWFLoader source="assets/logo_skillup.swf" left="0" top="0"/>
+						<s:HGroup width="100%" height="30" right="10" horizontalAlign="right">
+							<s:Button label="暂停" id="pauseButton" styleName="pauseButton" height="25" width="60" buttonMode="true" useHandCursor="true" visible="false" includeInLayout="false"/>
+							<s:Button label="设置" id="configButton" styleName="configButton" height="25" width="60" buttonMode="true" useHandCursor="true" visible="false" includeInLayout="false"/>
+						</s:HGroup>
+					</s:Group>
+					<mx:ViewStack id="appViewStack" width="100%" height="100%">
+						<page:WelcomeView id="welcomeView"/>
+						<page:HomeView id="homeView" width="100%" height="100%"/>
+						<page:PreviewView id="previewView" width="100%" height="100%"/>
+						<page:StudyView id="studyView" width="100%" height="100%"/>
+					</mx:ViewStack>
+				</s:VGroup>
+			</s:BorderContainer>
+			<s:TextArea id="appMessage" text="" width="100%" fontSize="14" color="#000000" verticalScrollPolicy="auto" height="100" includeInLayout="false" visible="false"/>
+		</s:VGroup>
+	</s:BorderContainer>
+</s:Application>

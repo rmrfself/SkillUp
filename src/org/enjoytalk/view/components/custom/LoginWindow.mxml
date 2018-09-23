@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" width="500" height="360" creationComplete="setInputFocus()">
+	<fx:Metadata>
+		[Event(name="AuthSucEvent" , type="flash.events.Event")]
+		[Event(name="CancelEvent" , type="flash.events.Event")]
+	</fx:Metadata>
+	<s:BorderContainer width="100%" height="100%" styleName="loginWindow">
+		<fx:Script>
+			<![CDATA[
+				import flash.net.navigateToURL;
+
+				import mx.managers.PopUpManager;
+				import mx.rpc.events.FaultEvent;
+				import mx.rpc.events.ResultEvent;
+				import mx.utils.StringUtil;
+
+				import org.enjoytalk.ApplicationFacade;
+				import org.enjoytalk.model.UserProxy;
+				import org.enjoytalk.model.vo.User;
+				import org.enjoytalk.view.events.DEvent;
+
+				private var facade:ApplicationFacade = ApplicationFacade.getInstance();
+				private var userProxy:UserProxy;
+
+				public function loginFailed():void
+				{
+					errorMessage.text = "用户信息验证错误";
+					texUserName.setFocus();
+				}
+
+				private function postUserData():void
+				{
+					if (StringUtil.trim(texUserName.text).length < 5 || StringUtil.trim(texUserName.text).length > 20)
+					{
+						errorMessage.text = "请正确输入您的用户名";
+						texUserName.setFocus();
+						return;
+					}
+					if (StringUtil.trim(txtPassword.text).length < 6 || StringUtil.trim(txtPassword.text).length > 20)
+					{
+						txtPassword.setFocus();
+						errorMessage.text = "请正确输入您的密码";
+						return;
+					}
+					userProxy = UserProxy(facade.retrieveProxy(UserProxy.NAME));
+					errorMessage.text = "";
+					var userData:Object = new Object();
+					userData.user_name = texUserName.text;
+					userData.password = txtPassword.text;
+					userProxy.doAuth(doneCallback, progressCallback, failCallback, userData);
+				}
+
+				private function doneCallback(event:ResultEvent):void
+				{
+					userProxy = UserProxy(facade.retrieveProxy(UserProxy.NAME));
+					var validUser:User = userProxy.user;
+					if (validUser.isAuthenticated)
+					{
+						this.dispatchEvent(new Event("authSucEvent", true));
+					}
+					else
+					{
+						errorMessage.text = "用户信息验证失败，请重新输入。";
+					}
+				}
+
+				private function progressCallback(event:ProgressEvent):void
+				{
+					errorMessage.text = "正在提交..";
+				}
+
+				private function failCallback(event:FaultEvent):void
+				{
+					errorMessage.text = "网络异常，用户信息提交失败，请稍候重试。";
+				}
+
+
+				private function closeWin():void
+				{
+					dispatchEvent(new Event("cancelWindow", true));
+				}
+
+				private function newWin(url:String):void
+				{
+					var urlRequest:URLRequest = new URLRequest(url);
+					navigateToURL(urlRequest, '_blank');
+				}
+
+				public function setInputFocus():void
+				{
+					texUserName.setFocus();
+					texUserName.focusEnabled = true;
+				}
+			]]>
+		</fx:Script>
+		<s:VGroup paddingBottom="15" paddingTop="15" paddingLeft="15" paddingRight="15" width="100%" height="100" color="#FFFFFF" gap="10" fontFamily="宋体">
+			<s:Label text="保存你的数据" width="100%" fontSize="20" fontWeight="bold"/>
+			<s:RichText text='感谢你使用我们的学习工具，登录后可以#保存你的学习数据并继续学习。如果你还没有帐号，点击下面#按钮创建新帐号' width="100%" paddingBottom="8" fontSize="13"/>
+			<s:BorderContainer height="1" width="100%" styleName="shortLine"/>
+			<s:VGroup width="400" height="70" verticalAlign="middle">
+				<s:Label text="点击下面按钮 #创建新帐号" width="100%"/>
+				<s:Button label="创建新帐号" styleName="commonButton" useHandCursor="true" height="30" width="100" buttonMode="true" click="newWin('http://study.f7tao.com/signup')" tabIndex="5"/>
+			</s:VGroup>
+			<s:BorderContainer height="1" width="100%" styleName="shortLine"/>
+			<s:Label text="使用已有帐号登录" width="100%" paddingTop="6" paddingBottom="6" fontSize="14"/>
+			<s:VGroup width="100%" fontSize="13">
+				<mx:Form width="100%" id="loginForm">
+					<mx:FormItem width="420" direction="horizontal" horizontalGap="15">
+						<s:Label text="用户名或邮件地址" width="180"/>
+						<s:Label text="密码" width="180"/>
+					</mx:FormItem>
+					<mx:FormItem width="420" direction="horizontal" horizontalGap="15">
+						<s:TextInput id="texUserName" styleName="txtInput" color="0x5353553" paddingBottom="3" paddingLeft="5" paddingTop="3" paddingRight="3" height="30" width="180" borderVisible="false" borderColor="#0061BF" tabIndex="0" tabEnabled="true"/>
+						<s:TextInput id="txtPassword" styleName="txtInput" displayAsPassword="true" color="0x5353553" paddingBottom="3" paddingLeft="5" paddingTop="3" paddingRight="3" height="30" width="180" borderVisible="false" borderColor="#0061BF" tabIndex="1"/>
+					</mx:FormItem>
+					<mx:ControlBar id="conBar" width="100%">
+						<s:Button label="确认登录" click="postUserData()" height="30" width="80" styleName="commonButton" buttonMode="true" useHandCursor="true" fontSize="13" tabIndex="2"/>
+						<s:Button label="取消" click="closeWin()" styleName="commonButton" height="30" width="80" buttonMode="true" useHandCursor="true" fontSize="13" tabIndex="3"/>
+						<s:RichText id="errorMessage" color="#C81628"/>
+					</mx:ControlBar>
+				</mx:Form>
+			</s:VGroup>
+		</s:VGroup>
+	</s:BorderContainer>
+</s:Group>
